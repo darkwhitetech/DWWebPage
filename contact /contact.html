@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar Snippet - Debugged</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+   :root {
+            --color-black: #000000; /* True Pitch Black (used for body and input backgrounds) */
+            --color-form-bg: #0A0A0A; /* Very deep black/dark gray for the form wrapper */
+            --color-white: #ffffff;
+            --color-silver: #A0A0A0;
+            --color-border: #181818; 
+            --color-accent: #6C6C6C;
+            --color-focus-glow: rgba(160, 160, 160, 0.5); 
+            --color-success: #4CAF50; 
+            --transition-time: 0.3s;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #050505;
+            color: #fff;
+            /* Ensure enough content to scroll */
+            padding-bottom: 100px;
+        }
+        
+        /* ANNOUNCEMENT BAR - DEBUGGED */
+        .announcement-bar {
+            position: sticky; /* Make it sticky */
+            top: 0; /* Stick to the very top */
+            z-index: 1001; /* Higher z-index than nav */
+
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .scroll-text {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 40s linear infinite;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .scroll-text span {
+            padding: 0 30px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* NAVIGATION BAR - DEBUGGED */
+        nav {
+            position: sticky;
+            top: 40px; /* Stick 40px below the top (where the announcement bar is) */
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        /* ... Logo and Link styles (unchanged) ... */
+        .logo { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .logo-text-wrapper { display: flex; flex-direction: column; justify-content: column; gap:0; }
+        .main-logo-text { font-size: 24px; font-weight: 500; letter-spacing: 3px; color: #e0e0e0; margin-left: 50px; margin-top: -30px; }
+        .logo-subtitle { font-size: 11px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.5); margin-left:50px; text-transform: uppercase; line-height: 1; }
+        .logo-cube-wrapper { height: 14px; width: 14px; perspective: 500px; }
+        .logo-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spin 12s linear infinite; }
+        @keyframes spin { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
+        .logo-face { position: absolute; width: 24px; height: 24px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); opacity: 0.7; }
+        .logo-face:nth-child(1) { transform: rotateY(0deg) translateZ(12px); }
+        .logo-face:nth-child(2) { transform: rotateY(90deg) translateZ(12px); }
+        .logo-face:nth-child(3) { transform: rotateY(180deg) translateZ(12px); }
+        .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(12px); }
+        .logo-face:nth-child(5) { transform: rotateX(90deg) translateZ(12px); }
+        .logo-face:nth-child(6) { transform: rotateX(-90deg) translateZ(12px); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 15px; font-weight: 400; letter-spacing: 1px; position: relative; transition: all 0.3s ease; padding: 8px 0; }
+        .nav-links li a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background: #fff; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: translateX(-50%); }
+        .nav-links li a:hover { color: #ffffff; }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; }
+        .mobile-menu-btn span { width: 30px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 3px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(5, 5, 5, 0.98); flex-direction: column; padding: 30px; gap: 20px; backdrop-filter: blur(20px); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: flex; }
+            .nav-container { padding: 20px 30px; }
+        }
+
+           /* --- 2. Star/Universe Background --- */
+        #star-container {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            background: radial-gradient(ellipse at bottom, #0A0A0A 0%, #000000 100%); 
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5); 
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .nebula {
+            position: absolute;
+            opacity: 0.1; 
+            border-radius: 50%;
+            filter: blur(60px); 
+            z-index: -2; 
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.1; transform: scale(0.8); }
+        }
+
+        /* --- 3. Main Layout Container --- */
+        .contact-container {
+            position: relative; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            z-index: 10;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            color: var(--color-white);
+            position: relative;
+        }
+
+        /* Title Moving Line Effect */
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--color-silver) 50%, transparent 100%);
+            overflow: hidden;
+            animation: moveLine 4s linear infinite;
+        }
+        
+        @keyframes moveLine {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(50%); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-silver);
+            font-weight: 300;
+        }
+
+        /* --- 4. Option Grid (Cards) --- */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-option {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all var(--transition-time);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.03), 0 0 10px rgba(255, 255, 255, 0.01);
+            animation: neonGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            0% { border-color: var(--color-border); box-shadow: 0 0 10px rgba(108, 108, 108, 0.05); }
+            100% { border-color: #333333; box-shadow: 0 0 20px rgba(108, 108, 108, 0.2), 0 0 5px rgba(255, 255, 255, 0.05); }
+        }
+
+        .contact-option:hover {
+            box-shadow: 0 10px 50px rgba(108, 108, 108, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--color-silver);
+            animation: none;
+        }
+        
+        .icon-fa {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            transition: color var(--transition-time);
+        }
+        .contact-option:hover .icon-fa {
+            color: var(--color-white);
+        }
+
+        .option-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--color-silver); 
+            transition: color var(--transition-time);
+        }
+        .contact-option:hover .option-title {
+            color: var(--color-white);
+        }
+
+        .option-description {
+            color: var(--color-silver);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .action-button {
+            background: var(--color-accent);
+            color: var(--color-black);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background var(--transition-time), transform var(--transition-time);
+            align-self: flex-end;
+        }
+
+        .action-button:hover {
+            background: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .contact-option.active {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 50px rgba(108, 108, 108, 0.3);
+        }
+
+        /* --- 5. Form Section (Aesthetic Improvements) --- */
+        .form-section-wrapper {
+          margin-top: 5rem;
+            padding: 3rem;
+            /* CHANGE: Use the new deeper black variable for the form background */
+            background: var(--color-form-bg); 
+            border-radius: 20px;
+            display: none; 
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden; 
+        }
+        
+        .form-section-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 20px;
+            /* Create a rotating gradient border */
+            background: conic-gradient(
+                from 0deg, 
+                transparent 0%, 
+                var(--color-silver) 10%, 
+                transparent 20%,
+                transparent 80%,
+                var(--color-silver) 90%, 
+                transparent 100%
+            );
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: 0;
+            animation: rotateBorder 6s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            to { transform: rotate(360deg); }
+        }
+
+        .form-section-wrapper > * {
+            position: relative;
+            z-index: 1; /* Keep content above the border effect */
+        }
+
+        .form-section-wrapper.visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        .form-section-wrapper h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-silver);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* UNIFIED STYLING FOR ALL INPUTS, SELECTS, AND TEXTAREAS */
+        input:not([type="submit"]),
+        select,
+        textarea {
+           width: 100%;
+            padding: 1.2rem;
+            background: var(--color-black); /* Input background is still TRUE PITCH BLACK for max contrast */
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: border-color var(--transition-time), box-shadow var(--transition-time);
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none
+        }
+                                   
+        /* Specific styling for file input (to hide ugly button) */
+        input[type="file"] {
+            padding: 0.8rem 1.2rem; /* Adjusted vertical padding */
+        }
+        
+        /* Placeholder styling for better visibility */
+        input::placeholder, textarea::placeholder {
+            color: #444; 
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-silver);
+            box-shadow: 0 0 0 3px var(--color-focus-glow);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Submit Button Styling */
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-accent);
+            color: var(--color-black);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background var(--transition-time), transform var(--transition-time), box-shadow var(--transition-time);
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            background: var(--color-white);
+            color: var(--color-black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- 6. Success Message Modal --- */
+        #successModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95); 
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #successModal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .check-icon {
+            font-size: 8rem;
+            color: var(--color-success);
+            margin-bottom: 2rem;
+            animation: fadeInScale 0.6s ease-out;
+            text-shadow: 0 0 20px rgba(76, 175, 80, 0.5); 
+        }
+        
+        @keyframes fadeInScale {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #successModal h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-white);
+        }
+
+        #successModal p {
+            font-size: 1.2rem;
+            color: var(--color-silver);
+        }
+        
+        /* --- 7. Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            .form-section-wrapper {
+                padding: 1.5rem;
+            }
+            .form-section-wrapper h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="scroll-text">
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-text-wrapper">
+                    <div class="logo-cube-wrapper">
+                        <div class="logo-cube">
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                        </div>
+                    </div>
+                    <span class="main-logo-text">DARK WHITE</span>
+                    <span class="logo-subtitle">TECHNOLOGIES</span>
+                </div>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+      <div id="star-container"></div> 
+
+    <div class="contact-container">
+        
+        <header class="page-header">
+            <h1 class="main-title">Let's Connect</h1>
+            <p class="subtitle">Choose the path that fits your goal, and we'll take it from there.</p>
+        </header>
+
+        <section class="option-grid">
+            
+            <div class="contact-option" data-form="job">
+                <i class="icon-fa fa-solid fa-briefcase"></i> 
+                <h2 class="option-title">Apply for Job</h2>
+                <p class="option-description">Join our innovative team. We're looking for passionate engineers, designers, and strategists ready to explore the next digital frontier.</p>
+                <button class="action-button" data-form-target="job">Start Application</button>
+            </div>
+
+            <div class="contact-option" data-form="create">
+                <i class="icon-fa fa-solid fa-code-branch"></i>
+                <h2 class="option-title">Create with Us</h2>
+                <p class="option-description">Ready to start a new high-impact project? Get in touch to discuss your digital transformation needs and build the future.</p>
+                <button class="action-button" data-form-target="create">Start a Project</button>
+            </div>
+
+            <div class="contact-option" data-form="call">
+                <i class="icon-fa fa-solid fa-headset"></i>
+                <h2 class="option-title">Book the First Free Call</h2>
+                <p class="option-description">Schedule a 30-minute, no-commitment consultation with our lead strategist to map out your initial steps.</p>
+                <button class="action-button" data-form-target="call">Book Call</button>
+            </div>
+
+        </section>
+
+        <section class="form-section-wrapper" id="formWrapper">
+            </section>
+
+    </div>
+
+    <div id="successModal">
+        <i class="check-icon fa-solid fa-circle-check"></i>
+        <h3>Submission Successful!</h3>
+        <p>Your request has been securely transmitted. We will contact you very soon.</p>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    
+
+    <script>
+
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (navbar) {
+                // Since the announcement bar is always visible, we check if scroll position is past the bar's height (40px)
+                if (window.scrollY > 40) { 
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+             document.addEventListener('DOMContentLoaded', () => {
+            const formWrapper = document.getElementById('formWrapper');
+            const actionButtons = document.querySelectorAll('.action-button');
+            const contactOptions = document.querySelectorAll('.contact-option');
+            const starContainer = document.getElementById('star-container');
+            const successModal = document.getElementById('successModal');
+
+            // --- Star/Nebula Generation ---
+            function generateUniverse() {
+                const numStars = 150;
+                // [Star and Nebula generation code remains the same]
+                for (let i = 0; i < numStars; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    const size = Math.random() * 2 + 1;
+                    star.style.width = star.style.height = `${size}px`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.animationDelay = `${Math.random() * 5}s`;
+                    star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+                    starContainer.appendChild(star);
+                }
+                const nebulaeData = [
+                    { top: '10%', left: '20%', size: '400px', color: '#8888AA' },
+                    { top: '60%', left: '75%', size: '500px', color: '#AADDFF' },
+                    { top: '35%', left: '50%', size: '350px', color: '#AA8888' }
+                ];
+
+                nebulaeData.forEach(data => {
+                    const nebula = document.createElement('div');
+                    nebula.classList.add('nebula');
+                    nebula.style.top = data.top;
+                    nebula.style.left = data.left;
+                    nebula.style.width = nebula.style.height = data.size;
+                    nebula.style.backgroundColor = data.color;
+                    starContainer.appendChild(nebula);
+                });
+            }
+
+            generateUniverse();
+
+            // --- Country List (Simple subset for example) ---
+            const countryOptions = `
+                <option value="" disabled selected>Select Country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="IN">India</option>
+                <option value="JP">Japan</option>
+                <option value="OTHER">Other</option>
+            `;
+
+
+            // --- Form Templates (Updated with Country Select and File Input) ---
+            const forms = {
+                job: `
+                    <form id="jobForm" data-type="job" enctype="multipart/form-data">
+                        <h2>Application Form: The Next Orbit</h2>
+                        <div class="form-group">
+                            <label for="jobName">Full Name</label>
+                            <input type="text" id="jobName" name="fullName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobEmail">Email Address</label>
+                            <input type="email" id="jobEmail" name="email" required placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobCountry">Country/Region</label>
+                            <select id="jobCountry" name="country" required>
+                                ${countryOptions}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobRole">Desired Role</label>
+                            <input type="text" id="jobRole" name="desiredRole" required placeholder="e.g., Senior Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobCV">Upload CV/Resume (PDF only)</label>
+                            <input type="file" id="jobCV" name="cvFile" accept=".pdf" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobExperience">Years of Experience</label>
+                            <input type="number" id="jobExperience" name="experience" min="0" required placeholder="3">
+                        </div>
+                        <button type="submit" class="submit-button">Launch Application</button>
+                    </form>
+                `,
+                create: `
+                    <form id="createForm" data-type="create">
+                        <h2>Start a Project: Fusion Point</h2>
+                        <div class="form-group">
+                            <label for="createName">Your Name</label>
+                            <input type="text" id="createName" name="fullName" required placeholder="Jane Smith">
+                        </div>
+                        <div class="form-group">
+                            <label for="createEmail">Company Email</label>
+                            <input type="email" id="createEmail" name="email" required placeholder="contact@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="createCountry">Country/Region</label>
+                            <select id="createCountry" name="country" required>
+                                ${countryOptions}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="createBudget">Project Budget Range</label>
+                            <select id="createBudget" name="budget" required>
+                                <option value="" disabled selected>Select Budget</option>
+                                <option value="starter">$1k - $5k</option>
+                                <option value="mid">$5k - $20k</option>
+                                <option value="large">$20k+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="createDetails">Describe your mission/idea</label>
+                            <textarea id="createDetails" name="projectDetails" required placeholder="We need a custom API solution to...">
+                            </textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Initiate Project</button>
+                    </form>
+                `,
+                call: `
+                    <form id="callForm" data-type="call">
+                        <h2>Book Your Free Call: Signal Transmission</h2>
+                        <div class="form-group">
+                            <label for="callName">Full Name</label>
+                            <input type="text" id="callName" name="fullName" required placeholder="Alex Johnson">
+                        </div>
+                        <div class="form-group">
+                            <label for="callEmail">Email Address</label>
+                            <input type="email" id="callEmail" name="email" required placeholder="schedule@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="callCountry">Country/Region</label>
+                            <select id="callCountry" name="country" required>
+                                ${countryOptions}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="callPhone">Phone Number (Optional)</label>
+                            <input type="tel" id="callPhone" name="phone" placeholder="+1 555-123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="callReason">Primary Topic for the Call</label>
+                            <textarea id="callReason" name="topic" required placeholder="Discussing an API integration strategy or new platform development."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Transmit Signal (Book Call)</button>
+                    </form>
+                `
+            };
+            
+            // --- Event Listener and Submission Logic ---
+            actionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const formType = button.getAttribute('data-form-target');
+                    
+                    const currentActiveForm = formWrapper.querySelector(`[data-type="${formType}"]`);
+                    const isAlreadyOpen = currentActiveForm && formWrapper.classList.contains('visible');
+
+                    formWrapper.innerHTML = '';
+                    formWrapper.classList.remove('visible');
+                    contactOptions.forEach(opt => opt.classList.remove('active'));
+
+                    if (!isAlreadyOpen) {
+                        formWrapper.innerHTML = forms[formType];
+                        
+                        setTimeout(() => {
+                           formWrapper.classList.add('visible');
+                        }, 50);
+
+                        const targetOption = document.querySelector(`.contact-option[data-form="${formType}"]`);
+                        if (targetOption) {
+                            targetOption.classList.add('active');
+                        }
+                        
+                        // --- AUTO-SCROLL INTEGRATION ---
+                        // Scroll the window to the form's position minus the height of the sticky elements.
+                        // Announce bar is 40px, Navbar is roughly 60px padding/height, so use 100px offset.
+                        setTimeout(() => {
+                            const offset = 100; 
+                            window.scrollTo({
+                                top: formWrapper.offsetTop - offset,
+                                behavior: 'smooth'
+                            });
+                        }, 100); 
+                        // --- END AUTO-SCROLL INTEGRATION ---
+
+                        const newForm = formWrapper.querySelector('form');
+                        if (newForm) {
+                            newForm.addEventListener('submit', handleFormSubmit);
+                        }
+                    }
+                });
+            });
+
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                const form = event.target;
+                
+                form.reset();
+                formWrapper.innerHTML = '';
+                formWrapper.classList.remove('visible');
+                contactOptions.forEach(opt => opt.classList.remove('active'));
+                
+                successModal.classList.add('show');
+
+                setTimeout(() => {
+                    successModal.classList.remove('show');
+                }, 4000);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get the placeholder element by its ID
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    
+    // Check if the placeholder exists on the current page
+    if (footerPlaceholder) {
+        // 2. Use the Fetch API to load the content of the external file
+        fetch('../footer.html')
+            .then(response => {
+                // Ensure the response is OK (HTTP 200 status)
+                if (!response.ok) {
+                    // Throw an error if the file is not found or inaccessible
+                    throw new Error(`Failed to load footer. Status: ${response.status}`);
+                }
+                // Convert the response stream to plain text
+                return response.text();
+            })
+            .then(html => {
+                // 3. Inject the fetched HTML content into the placeholder div
+                footerPlaceholder.innerHTML = html;
+            })
+            .catch(error => {
+                // Handle any errors during the fetch process
+                console.error("Error loading footer content:", error);
+                // Optional: Display a message to the user if the footer fails to load
+                footerPlaceholder.innerHTML = '<div style="color: #ff5555; text-align: center; padding: 20px;">Error: Could not load the footer content.</div>';
+            });
+    }
+});
+
+        
+    </script>
+        
+    </script>
+</body>
+</html>

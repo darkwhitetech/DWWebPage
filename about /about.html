@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark White Technologies | About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ------------------------------------------- */
+        /* BASE & THEME */
+        /* ------------------------------------------- */
+        :root {
+            --color-dark: #000000;
+            --color-light: #ffffff;
+            --color-silver: #CCCCCC;
+            --color-darker: #050505;
+            --font-family-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            background: var(--color-darker);
+            color: var(--color-light);
+            min-height: 200vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ------------------------------------------- */
+        /* ANNOUNCEMENT BAR */
+        /* ------------------------------------------- */
+        .announcement-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .scroll-text {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 40s linear infinite;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .scroll-text span {
+            padding: 0 30px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ------------------------------------------- */
+        /* NAVIGATION BAR */
+        /* ------------------------------------------- */
+        nav {
+            position: sticky;
+            top: 40px;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        /* Logo Styling */
+        .logo { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .logo-text-wrapper { display: flex; flex-direction: column; gap: 0; line-height: 1.2; }
+        .main-logo-text { font-size: 20px; font-weight: 500; letter-spacing: 3px; color: var(--color-light); line-height: 1; }
+        .logo-subtitle { font-size: 10px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; line-height: 1; }
+        
+        /* Cube 3D */
+        .logo-cube-wrapper { height: 20px; width: 20px; perspective: 500px; margin-right: 10px; }
+        .logo-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spin 12s linear infinite; }
+        @keyframes spin { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
+        .logo-face { position: absolute; width: 20px; height: 20px; background: rgba(204, 204, 204, 0.1); border: 1px solid rgba(204, 204, 204, 0.3); opacity: 0.8; }
+        .logo-face:nth-child(1) { transform: rotateY(0deg) translateZ(10px); }
+        .logo-face:nth-child(2) { transform: rotateY(90deg) translateZ(10px); }
+        .logo-face:nth-child(3) { transform: rotateY(180deg) translateZ(10px); }
+        .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(10px); }
+        .logo-face:nth-child(5) { transform: rotateX(90deg) translateZ(10px); }
+        .logo-face:nth-child(6) { transform: rotateX(-90deg) translateZ(10px); }
+        
+        /* Navigation Links */
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links li a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none; 
+            font-size: 15px; 
+            font-weight: 400; 
+            letter-spacing: 1px; 
+            position: relative; 
+            transition: all 0.3s ease; 
+            padding: 8px 0; 
+        }
+        .nav-links li a::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 50%; 
+            width: 0; 
+            height: 1px; 
+            background: var(--color-silver);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+            transform: translateX(-50%); 
+        }
+        .nav-links li a:hover { color: var(--color-light); }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; }
+        .mobile-menu-btn span { width: 30px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 3px; }
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                background: rgba(5, 5, 5, 0.98); 
+                flex-direction: column; 
+                padding: 30px; 
+                gap: 20px; 
+                backdrop-filter: blur(20px); 
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: flex; }
+            .nav-container { padding: 20px 30px; }
+        }
+
+        /* ------------------------------------------- */
+        /* ABOUT US SECTION - OPTIMIZED STYLES */
+        /* ------------------------------------------- */
+        .about-us-section {
+        margin-top: -5px;
+            min-height: calc(100vh - 40px - 60px); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      
+        }
+
+        .about-header {
+            font-size: clamp(45px, 6vw, 120px);
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* NEW GRID STRUCTURE: Text | Image | Text (Center image dominance) */
+        .about-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr; /* Central image takes more space */
+            gap: 60px; /* Increased gap for better breathing room */
+            align-items: center;
+        }
+
+        /* Left Text Column */
+        .left-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduced gap */
+        }
+
+        .tagline {
+            font-size: 15px; /* Slightly smaller */
+            font-weight: 500;
+            color: var(--color-silver);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mission-text {
+            font-size: 13px; /* Smaller body text */
+            color: #AAAAAA;
+            line-height: 1.7;
+        }
+
+        /* Image Interactivity Base Style */
+        .image-wrapper {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 10px; /* Slightly softer corners */
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Enhanced transition curve */
+        }
+        
+        /* Interactive Hover Effect */
+        .image-wrapper:hover {
+            transform: scale(1.04) rotate(0.5deg); /* Added slight rotation for flair */
+            box-shadow: 0 35px 70px rgba(204, 204, 204, 0.25); /* Stronger silver shadow */
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            transition: filter 0.4s ease;
+        }
+        .image-wrapper:hover img {
+             filter: grayscale(0%);
+        }
+
+        /* Center Image Column */
+        .center-image-wrapper {
+            height: 550px; /* Increased height for dominance */
+            grid-column: 2 / 3;
+            align-self: start;
+        }
+
+        /* Right Philosophy Column */
+        .right-philosophy {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduced gap */
+            align-items: flex-start;
+        }
+
+        .philosophy-image-wrapper {
+            height: 180px; /* Adjusted height */
+        }
+
+        .philosophy-title {
+            font-size: 20px; /* Slightly smaller title */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-top: 5px;
+        }
+
+        .philosophy-text {
+            font-size: 13px; /* Smaller body text */
+            color: #AAAAAA;
+            line-height: 1.7;
+        }
+        
+        /* ------------------------------------------- */
+        /* RESPONSIVENESS */
+        /* ------------------------------------------- */
+        @media (max-width: 1024px) {
+            .container { padding: 0 30px; }
+            .about-header { font-size: clamp(60px, 10vw, 120px); margin-bottom: 30px; }
+            
+            /* Revert to balanced grid on tablet */
+            .about-content-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .center-image-wrapper { height: 350px; grid-column: 1 / 3; }
+            
+            /* Reordered for mobile flow */
+            .right-philosophy { grid-column: 2 / 3; grid-row: 1 / 2; }
+            .left-info { grid-column: 1 / 2; grid-row: 1 / 2; }
+
+            /* Reset image hover on smaller screens for performance */
+            .image-wrapper:hover { transform: none; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05); }
+        }
+
+        @media (max-width: 640px) {
+            .about-us-section { padding: 60px 0; }
+            .about-header { text-align: center; font-size: 50px; letter-spacing: -3px; }
+            .about-content-grid { grid-template-columns: 1fr; }
+            .left-info, .right-philosophy { 
+                grid-column: 1 / 2; 
+                grid-row: auto; 
+                padding: 0; 
+                text-align: center; 
+                align-items: center; 
+            }
+            .center-image-wrapper { 
+                height: 300px; 
+                grid-column: 1 / 2; 
+                grid-row: 2 / 3; 
+            }
+        }
+
+         .container {
+            max-width: 1400px;
+            
+            margin-bottom: 100px;
+        }
+
+        /* --- Team Section Header --- */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+      
+        }
+
+        .header h1 {
+            font-size: clamp(45px, 6vw, 120px);
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        
+        .header h1:hover {
+            text-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.9), 
+                0 0 25px rgba(255, 255, 255, 0.5), 
+                0 3px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: #999;
+            font-weight: 300;
+        }
+        /* ------------------------------------- */
+
+        /* Services Grid - 3D Carousel Container */
+        .services-grid-wrapper {
+            perspective: 1500px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 700px; 
+            margin-bottom: 2rem;
+        }
+
+        .services-grid {
+            width: 400px; 
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1); 
+        }
+
+        /* Service Card */
+        .service-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            
+            /* Classy Background Effect: Subtle Diagonal Stripes */
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.03) 0,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 10px
+            );
+
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 600px; 
+            margin: -300px -175px; 
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform-origin: 50% 50%; 
+        }
+
+        .service-card:nth-child(1) {
+            transform: rotateY(0deg) translateZ(400px);
+        }
+
+        .service-card:nth-child(2) {
+            transform: rotateY(120deg) translateZ(400px);
+        }
+
+        .service-card:nth-child(3) {
+            transform: rotateY(240deg) translateZ(400px);
+        }
+
+        /* Card Hover Effect: Subtle Glow (Kept) */
+        .service-card:hover {
+            border-color: #666;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1); 
+        }
+
+        .image-container {
+            position: relative;
+            background: #111;
+            overflow: hidden;
+            height: 100%; 
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 100%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111; 
+            position: relative;
+        }
+        
+        /* Image Style */
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            opacity: 0.8; 
+            /* Added transition for new effects */
+            transition: opacity 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* >>> EMPHASIS EFFECT ADDED HERE <<< */
+        .service-card:hover .service-image img {
+            opacity: 1;
+            transform: scale(1.05); /* Slight zoom for emphasis */
+            box-shadow: 0 0 20px rgba(var(--color-silver), 0.5), 0 0 40px rgba(255, 255, 255, 0.2); /* Silver/White Glow */
+        }
+
+        .name-badge {
+            position: absolute;
+            top: 20px; 
+            right: 20px;
+            background: white;
+            color: #000;
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .name-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* --- Content Section: Transparent Overlay (Kept) --- */
+        .content {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 1.75rem 1.75rem; 
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); /* Add slight gradient for better contrast over image */
+            z-index: 5;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); 
+        }
+
+        .service-number {
+            display: inline-block;
+            background: none; 
+            color: #fff;
+            padding: 0.25rem 0.75rem; 
+            border-radius: 10px;
+            font-size: 1rem; 
+            font-weight: 700;
+            margin-bottom: 0.5rem; 
+            border: 1px solid #fff; 
+        }
+
+        .service-title {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .service-description {
+            font-size: 0.875rem; 
+            color: #fff; 
+            line-height: 1.4;
+            font-weight: 300;
+            max-height: 5.6em; 
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; 
+            -webkit-box-orient: vertical;
+        }
+        /* ------------------------------------------------ */
+
+        /* --- Navigation Arrows: Classy White Circles (Kept) --- */
+        .navigation {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .nav-arrow {
+            background: none;
+            color: #fff;
+            border: none;
+            padding: 1rem 1rem; 
+            margin: 0 1rem;
+            cursor: pointer;
+            border-radius: 50%; 
+            font-size: 1.2rem; 
+            font-weight: 700;
+            transition: background 0.3s, transform 0.3s, color 0.3s, box-shadow 0.3s;
+            width: 50px; 
+            height: 50px;
+            line-height: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-arrow:hover {
+            background: #fff; 
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        /* ----------------------------------------------- */
+
+        /* === Responsive Design (Phone Compatibility) === */
+        @media (max-width: 900px) {
+            /* Disable 3D view and make the section auto-height */
+            .services-grid-wrapper {
+                perspective: none;
+                height: auto;
+                /* Add horizontal padding to prevent cards from touching screen edges */
+                padding: 0 1rem; 
+            }
+
+            .services-grid {
+                width: 100%;
+                transform-style: flat;
+                transition: none;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            /* Make cards full width and stack vertically */
+            .service-card {
+                position: static;
+                width: 100%;
+                height: 400px; 
+                margin: 0;
+                transform: none !important;
+                opacity: 1;
+                /* Remove the diagonal pattern on mobile if preferred, or keep it */
+                background-image: none;
+            }
+
+            .service-card:hover {
+                transform: none !important;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Keep original shadow */
+            }
+
+            .service-card:hover .service-image img {
+                transform: none; /* Disable zoom on mobile */
+                box-shadow: none; /* Disable box-shadow glow on mobile */
+            }
+
+            .image-container {
+                height: 100%; 
+            }
+
+            .content {
+                background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); 
+                padding: 1rem 1.25rem;
+            }
+
+            .navigation {
+                display: none; 
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* ------------------------------------------- */
+        /* STAR AND NEBULA STYLES */
+        /* ------------------------------------------- */
+        #star-container {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* CRUCIAL: Must be behind all content */
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .nebula {
+            position: absolute;
+            opacity: 0.15; /* Subtle and translucent */
+            border-radius: 50%;
+            filter: blur(50px); /* Gaseous look */
+            z-index: -2; /* Behind the stars */
+        }
+        
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+        }
+
+
+        .container-1 { /* RENAMED FROM .container */
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+          
+        }
+
+        /* --- 2. Left Section (Header & CTA) --- */
+        .left-section {
+            position: sticky;
+            top: 4rem;
+            padding-right: 2rem;
+            padding-bottom: 2rem; 
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 3rem;
+            letter-spacing: -0.03em;
+            color: var(--color-white);
+        }
+
+        .cta-group {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .help-text {
+            color: var(--color-silver);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-weight: 300;
+        }
+        
+        /* New/Restored Chat Button Styling */
+   /* /* New/Restored Chat Button Styling */
+        .chat-button-container {
+            position: relative;
+            display: inline-block; 
+            margin-top: 2rem;
+        }
+
+        .chat-button {
+            width: 90px;
+            height: 90px;
+            /* Blue background */
+            background: #fff; 
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            transition: all var(--transition-time) cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .chat-button:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 20px 60px #fff; 
+        }
+
+        .chat-icon-svg {
+            width: 50px;
+            height: 50px;
+            /* FIX: Set both stroke and fill properties */
+            stroke: var(--color-white); 
+            fill: var(--color-white); /* Important: Ensure the fill is white */
+            stroke-width: 1.5;
+        }
+        /* Arrow pointer styles removed as requested */
+
+        /* --- 3. Right Section (FAQ) --- */
+        .faq-section {
+            background: var(--color-dark-gray);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-icon-svg {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+            fill: none;
+            stroke-width: 2;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            color: var(--color-white);
+            font-size: 1rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #666;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        /* Search Results Counter */
+        #search-results-count {
+            display: block;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            padding-left: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-silver);
+            height: 20px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        #search-results-count.active {
+            opacity: 1;
+        }
+
+        /* FAQ Items */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 0.75rem;
+            opacity: 0; /* For animation */
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #3a3a3a;
+        }
+        
+        /* Highlight on search match */
+        .faq-item.search-match {
+            border-color: var(--color-light-silver);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item.active {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #4a4a4a;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.75rem 2rem;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .chevron-svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-silver);
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), stroke 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.active .chevron-svg {
+            transform: rotate(180deg);
+            stroke: var(--color-white);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+                        padding 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--color-light-silver);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- 4. Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+        /* --- 5. Responsive Design --- */
+        @media (max-width: 1024px) {
+            .container-1 { /* RENAMED FROM .container */
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .left-section {
+                position: static;
+                padding-right: 0;
+            }
+
+            .main-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 2rem 1rem;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .faq-section {
+                padding: 2rem;
+                border-radius: 20px;
+            }
+
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="star-container">
+        </div>
+
+    <div class="announcement-bar">
+        <div class="scroll-text">
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-cube-wrapper">
+                    <div class="logo-cube">
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                    </div>
+                </div>
+                <div class="logo-text-wrapper">
+                    <span class="main-logo-text">DARK WHITE</span>
+                    <span class="logo-subtitle">TECHNOLOGIES</span>
+                </div>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-us-section" id="about">
+        <div class="container">
+            <h1 class="about-header">ABOUT<br>US</h1>
+
+            <div class="about-content-grid">
+                <div class="left-info">
+                    <p class="tagline">Digital Innovation & Precision Engineering</p>
+                    <p class="mission-text">
+                        Dark White Technologies is dedicated to pioneering **impactful and sophisticated tech solutions**. We empower businesses across industries to thrive with elegance and precision, leveraging **cutting-edge AI** and robust cloud infrastructure.
+                    </p>
+                    <p class="mission-text">
+                        Our approach combines the stability of established frameworks (The **Dark**) with the agility of new, creative strategies (The **White**), ensuring resilient and future-proof digital transformation.
+                    </p>
+                </div>
+
+                <div class="center-image-wrapper image-wrapper">
+                    <img src="https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg" alt="Modern, clean server room or office space">
+                </div>
+
+                <div class="right-philosophy">
+                    <div class="philosophy-image-wrapper image-wrapper">
+                         <img src="https://images.pexels.com/photos/3747481/pexels-photo-3747481.jpeg" alt="Abstract data flow visualization">
+                    </div>
+                    <h2 class="philosophy-title">Our Philosophy</h2>
+                    <p class="philosophy-text">
+                        We believe that the most powerful technology solutions are those that balance **deep technical complexity** (The Dark) with **unrivaled user simplicity** (The White). This duality guides our design, development, and consulting services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+        <div class="header">
+            <h1>OUR     TEAM</h1>
+            <p>We Grow Businesses Online. Period.</p>
+        </div>
+
+        <div class="services-grid-wrapper">
+            <div class="services-grid">
+                <div class="service-card" data-index="0">
+                    <div class="image-container">
+                        <div class="service-image">
+                            <img src="IMG_5312.PNG" alt="Team Member: Arya Jibi Ghimire">
+                        </div>
+                        <div class="name-badge">Arya Jibi Ghimire</div>
+                        <div class="content">
+                            <span class="service-number">01</span>
+                            <h3 class="service-title">Custom SEO Services</h3>
+                            <p class="service-description">
+                                Custom, organic SEO services that include technical audits, on-page search 
+                                engine optimization and advanced analytics. We ensure your digital presence is optimized for peak performance and visibility.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card" data-index="1">
+                    <div class="image-container">
+                        <div class="service-image">
+                            <img src="IMG_5312.png" alt="Team Member: Saarthak Raj Pandey">
+                        </div>
+                        <div class="name-badge">Saarthak Raj Pandey</div>
+                        <div class="content">
+                            <span class="service-number">02</span>
+                            <h3 class="service-title">SEO Website Design</h3>
+                            <p class="service-description">
+                                1st on the List provides highly effective PPC advertising for every budget 
+                                including Google PPC Ads, Bing PPC, and ad retargeting strategies that 
+                                deliver measurable results and ROI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card" data-index="2">
+                    <div class="image-container">
+                        <div class="service-image">
+                            <img src="IMG_5311.png" alt="Team Member: Subhav Baral">
+                        </div>
+                        <div class="name-badge">Subhav Baral</div>
+                        <div class="content">
+                            <span class="service-number">03</span>
+                            <h3 class="service-title">SEO Consulting</h3>
+                            <p class="service-description">
+                                B2B SEO is the process of generating valuable inbound leads from other 
+                                businesses through strategic optimization. We help you connect with the right clients and drive business-to-business growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-arrow" id="prev-btn">◀</button>
+            <button class="nav-arrow" id="next-btn">▶</button>
+        </div>
+
+        
+    </div>
+
+       <div class="container-1"> <div class="left-section">
+            <h1 class="main-title">Frequently Asked Questions</h1>
+            
+            <div class="cta-group">
+                <p class="help-text">Can't find what you are looking for?</p>
+            </div>
+            
+           <div class="chat-button-container">
+    <button class="chat-button" aria-label="Open chat">
+        <svg class="chat-icon-svg" viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor"></path>
+            <circle cx="12" cy="10" r="1.5" stroke="none" fill="#fff"></circle>
+        </svg>
+    </button>
+</div>
+        </div>
+
+        <div class="faq-section">
+            <div class="search-container">
+                <svg class="search-icon-svg" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="What are you looking for?"
+                    id="searchInput"
+                >
+            </div>
+            <span id="search-results-count"></span>
+
+            <div class="faq-list">
+                <div class="faq-item" data-id="1">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Who should use Dark White Technologies?</span>
+                        <svg class="chevron-svg" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Dark White Technologies is perfect for businesses of all sizes looking to establish a strong digital presence. Whether you're a startup, SME, or enterprise, our solutions are designed to scale with your needs and deliver measurable results.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-id="2">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What is required to use Dark White Technologies?</span>
+                        <svg class="chevron-svg" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You are not required anything to use Dark White Technologies. It is a comprehensive solution. All you need to do is to create a free account, design your digital strategy or select one of our predesigned solutions, and implement the technology to your business.</p>
+                        <p>Dark White Technologies can be integrated with every business platform on the internet. Moreover, we offer integrations with the most powerful digital solution providers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-id="3">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Do I need to have coding skills to use Dark White Technologies?</span>
+                        <svg class="chevron-svg" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No coding skills required! Our platform is designed with user-friendliness in mind. However, for those who want advanced customization, our solutions are developer-friendly and support custom integrations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-id="4">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Do I need to have design skills to work with Dark White Technologies?</span>
+                        <svg class="chevron-svg" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all! We provide beautiful, professionally designed templates and solutions that are ready to use. Our design team has crafted every element to ensure your business looks premium and professional from day one.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-id="5">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Why should I choose Dark White Technologies over similar solutions?</span>
+                        <svg class="chevron-svg" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Dark White Technologies stands out with its premium design, advanced features, seamless integrations, and dedicated support. We focus on delivering results, not just features. Our solutions are built with scalability, performance, and user experience at their core.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div id="footer-placeholder"></div>
+    
+    <script>
+        // --- Navigation and Menu Scripts (Existing) ---
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (navbar) {
+                if (window.scrollY > 40) { 
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Scroll to the target element, accounting for sticky bars
+                    window.scrollTo({
+                        top: target.offsetTop - navbar.offsetHeight - 40, 
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu if open
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // --- Carousel Script (Existing) ---
+        const carousel = document.querySelector('.services-grid');
+        const cards = document.querySelectorAll('.service-card');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let currentRotation = 0;
+        const totalCards = cards.length;
+        const angle = 360 / totalCards; // 120 degrees for 3 cards
+
+        function rotateCarousel(targetIndex) {
+            const requiredRotation = targetIndex * angle;
+
+            const currentFrontIndex = Math.round((-currentRotation / angle) % totalCards);
+            let steps = targetIndex - currentFrontIndex;
+            
+            // Adjust for wrapping (shortest path)
+            if (steps > totalCards / 2) {
+                steps -= totalCards;
+            } else if (steps < -totalCards / 2) {
+                steps += totalCards;
+            }
+            
+            currentRotation += steps * angle;
+
+            carousel.style.transform = `rotateY(${currentRotation}deg)`;
+        }
+
+        // Initialize Carousel state
+        if (cards.length > 0) {
+            // Add listeners for navigation
+            nextBtn.addEventListener('click', () => {
+                currentRotation -= angle;
+                carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentRotation += angle;
+                carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            });
+        }
+
+        // --- STAR AND NEBULA GENERATION SCRIPT (New/Fixed) ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const starContainer = document.getElementById('star-container');
+            const numStars = 100;
+            const numNebulae = 8;
+            
+            // Define a palette of nebula colors
+       const nebulaColors = [
+                // 1. Pure Silver/Grey Nebula (Monochromatic)
+                ['#F0F0F0', '#B0B0B0', '#707070'], 
+                
+                // 2. Icy Blue Nebula (Subtle Blue focus)
+                ['#C8E6FF', '#81D4FA', '#4FC3F7'], 
+                
+                // 3. Cool White/Grey Nebula (High Contrast)
+                ['#FFFFFF', '#E0E0E0', '#A0A0A0'], 
+                
+                // 4. Dark Silver/Light Blue (Deeper Blue accent)
+                ['#BBDEFB', '#64B5F6', '#2196F3'], 
+            ];
+
+            // Function to create and position a single star
+            function createStar() {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 2 + 1; // 1px to 3px
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                const duration = Math.random() * 10 + 5; // 5s to 15s twinkle
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `-${Math.random() * duration}s`;
+                starContainer.appendChild(star);
+            }
+
+            // Function to create and position a single nebula
+            function createNebula() {
+                const nebula = document.createElement('div');
+                nebula.classList.add('nebula');
+
+                // Pick a random color palette
+                const colors = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
+
+                // Set random size (large, between 200px and 600px)
+                const size = Math.random() * 400 + 200; 
+                nebula.style.width = `${size}px`;
+                nebula.style.height = `${size}px`;
+
+                // Set random position (allow slight overlap off-screen)
+                nebula.style.left = `${Math.random() * 120 - 10}vw`; 
+                nebula.style.top = `${Math.random() * 120 - 10}vh`;
+
+                // Create the soft radial gradient
+                nebula.style.background = `radial-gradient(circle at center, ${colors[0]} 0%, ${colors[1]} 30%, ${colors[2]} 60%, transparent 80%)`;
+
+                starContainer.appendChild(nebula);
+            }
+
+            // Initialization function
+            function initUniverse() {
+                starContainer.innerHTML = ''; // Clear existing elements
+
+                // 1. Create Nebulae
+                for (let i = 0; i < numNebulae; i++) {
+                    createNebula();
+                }
+
+                // 2. Create Stars
+                for (let i = 0; i < numStars; i++) {
+                    createStar();
+                }
+            }
+
+            // Initial creation
+            initUniverse();
+
+            // Re-initialize if the window is resized
+            window.addEventListener('resize', initUniverse);
+        });
+
+           document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const searchInput = document.getElementById('searchInput');
+            const searchCountSpan = document.getElementById('search-results-count');
+            const chatButton = document.querySelector('.chat-button'); // Restored chat button selection
+
+            /**
+             * Accordion Functionality
+             */
+            faqQuestions.forEach((question) => {
+                question.addEventListener('click', () => {
+                    const currentItem = question.closest('.faq-item');
+                    const isActive = currentItem.classList.contains('active');
+
+                    // Close all items
+                    faqItems.forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    });
+
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        currentItem.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            /**
+             * Search Functionality
+             */
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                let matchCount = 0;
+
+                // Close all FAQ items when starting a search
+                faqItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                if (searchTerm.length > 2) {
+                    faqItems.forEach(item => {
+                        const questionText = item.querySelector('span').textContent.toLowerCase();
+                        const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                        
+                        const matches = questionText.includes(searchTerm) || answerText.includes(searchTerm);
+                        
+                        item.style.display = matches ? 'block' : 'none';
+                        item.classList.toggle('search-match', matches);
+                        
+                        if (matches) {
+                            matchCount++;
+                        }
+                    });
+
+                    // Update and show counter
+                    searchCountSpan.textContent = `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
+                    searchCountSpan.classList.add('active');
+                } else {
+                    // Reset to default view
+                    faqItems.forEach(item => {
+                        item.style.display = 'block';
+                        item.classList.remove('search-match');
+                    });
+                    searchCountSpan.classList.remove('active');
+                    searchCountSpan.textContent = '';
+                }
+            });
+
+            /**
+             * Chat Button Functionality (Restored)
+             */
+            chatButton.addEventListener('click', () => {
+                alert('Initiating chat with Dark White Technologies Support...');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get the placeholder element by its ID
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    
+    // Check if the placeholder exists on the current page
+    if (footerPlaceholder) {
+        // 2. Use the Fetch API to load the content of the external file
+        fetch('../footer.html')
+            .then(response => {
+                // Ensure the response is OK (HTTP 200 status)
+                if (!response.ok) {
+                    // Throw an error if the file is not found or inaccessible
+                    throw new Error(`Failed to load footer. Status: ${response.status}`);
+                }
+                // Convert the response stream to plain text
+                return response.text();
+            })
+            .then(html => {
+                // 3. Inject the fetched HTML content into the placeholder div
+                footerPlaceholder.innerHTML = html;
+            })
+            .catch(error => {
+                // Handle any errors during the fetch process
+                console.error("Error loading footer content:", error);
+                // Optional: Display a message to the user if the footer fails to load
+                footerPlaceholder.innerHTML = '<div style="color: #ff5555; text-align: center; padding: 20px;">Error: Could not load the footer content.</div>';
+            });
+    }
+});
+    </script>
+</body>
+</html>

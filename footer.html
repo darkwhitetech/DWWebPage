@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Digital Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* BASE STYLES */
+        body {
+            background: #000000; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- DARK DIGITAL FOOTER STYLING --- */
+        .footer {
+           background-color: #1a1a1a; /* Changed from #0b0b0b to a slightly lighter grey */
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            color: #f0f0f0; 
+            padding: 60px 20px 30px;
+            margin-top: auto; 
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        /* LOGO & COPYRIGHT */
+        .footer-logo-section {
+            flex: 1 1 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo-placeholder {
+            /* --- SIGNIFICANTLY INCREASED LOGO SIZE HERE --- */
+            width: 300px;  /* Increased from 250px */
+            height: 100px; /* Increased from 70px */
+            /* --------------------------------------------- */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+        
+        .logo-placeholder img {
+            /* Ensures the image itself respects the new larger placeholder dimensions */
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.1));
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* CONTACT & ADDRESS STYLING */
+        .footer-section {
+            flex: 1 1 200px;
+        }
+
+        .footer-section p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #cccccc; 
+            line-height: 1.6;
+        }
+
+        .footer-section strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .contact-info a {
+            color: #007bff; 
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: #ffffff;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #e0e0e0; 
+            font-size: 24px;
+            margin-right: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #00aaff; 
+        }
+
+        /* SERVICES/LINKS LIST */
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .services-list li {
+            margin-bottom: 8px;
+        }
+
+        .services-list a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .services-list a:hover {
+            color: #ffffff;
+        }
+
+        /* BOTTOM BAR */
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a2a; 
+            text-align: center; /* Ensures content is centered */
+        }
+
+        .footer-bottom p {
+            /* Targeting the copyright paragraph */
+            font-size: 0.8rem;
+            color: #888888;
+            margin: 5px 0 0 0; /* Adjusted margin for the copyright text */
+        }
+        
+        .footer-links {
+            display: block; /* Makes the links occupy their own centered line */
+            margin-bottom: 10px; /* Adds space above the copyright text */
+        }
+
+        .footer-links a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-logo-section {
+                align-items: center;
+            }
+            .social-links {
+                margin-top: 15px;
+                margin-bottom: 20px;
+            }
+            .footer-section {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 20px;
+            }
+            .services-list {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="footer">
+        <div class="footer-container">
+
+            <div class="footer-logo-section">
+                <div class="logo-placeholder">
+                    <img src="logo.png" alt="Dark White Technology Logo">
+                </div>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <div class="contact-info">
+                    <p><strong>Head Office:</strong></p>
+                    <p>Bhanimandal, Lalitpur, Nepal</p>
+                    <p><strong>Administrative Office:</strong></p>
+                    <p>Dhobighat, Lalitpur, Nepal</p>
+                    <p>Email: <a href="mailto:info@darkwhite.com">info@darkwhite.com</a></p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Core Services</h3>
+                <ul class="services-list">
+                    <li><a href="#">Music Licensing</a></li>
+                    <li><a href="#">Custom Music & Direction</a></li>
+                    <li><a href="#">AI Tools & Search Enhancement</a></li>
+                    <li><a href="#">World-leading Music Catalog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Products</h3>
+                <ul class="services-list">
+                    <li><a href="#">ARestro (AR Dining App)</a></li>
+                    <li><a href="#">Myra (AI Health Platform)</a></li>
+                    <li><a href="#">MuseAR (AR Museum Guide)</a></li>
+                    <li><a href="#">Mero Kotha (AI Housing)</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <span class="footer-links">
+                <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a>
+            </span>
+            <p>&copy; Dark White Technology 2025. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

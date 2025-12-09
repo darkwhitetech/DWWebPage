@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark White Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* BASE STYLES & RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #050505;
+            color: #fff;
+            /* Adjusted padding: Removed bottom padding as the container handles vertical space */
+        }
+        
+        /* ANNOUNCEMENT BAR */
+        .announcement-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .scroll-text {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 40s linear infinite;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .scroll-text span {
+            padding: 0 30px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* NAVIGATION BAR */
+        nav {
+            position: sticky;
+            top: 40px;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px; /* Reduced vertical padding slightly */
+        }
+
+        /* --- LOGO FIXES START --- */
+        .logo { 
+            display: flex; 
+            align-items: center; /* Ensures vertical alignment */
+            gap: 15px; 
+            cursor: pointer; 
+        }
+        .logo-text-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            gap: 2px; /* Small gap between title and subtitle */
+        }
+        .main-logo-text { 
+            font-size: 24px; 
+            font-weight: 500; 
+            letter-spacing: 3px; 
+            color: #e0e0e0; 
+            /* REMOVED: margin-left: 50px; margin-top: -30px; */
+        }
+        .logo-subtitle { 
+            font-size: 11px; 
+            font-weight: 300; 
+            letter-spacing: 2px; 
+            color: rgba(255, 255, 255, 0.5); 
+            /* REMOVED: margin-left:50px; */
+            text-transform: uppercase; 
+            line-height: 1; 
+        }
+        /* --- LOGO FIXES END --- */
+
+        .logo-cube-wrapper { 
+            height: 14px; 
+            width: 14px; 
+            perspective: 500px; 
+        }
+        .logo-cube { 
+            width: 100%; 
+            height: 100%; 
+            position: relative; 
+            transform-style: preserve-3d; 
+            animation: spin 12s linear infinite; 
+        }
+        @keyframes spin { 
+            from { transform: rotateX(0deg) rotateY(0deg); } 
+            to { transform: rotateX(360deg) rotateY(360deg); } 
+        }
+        /* Adjusted face size to 14px to match wrapper for cube alignment */
+        .logo-face { 
+            position: absolute; 
+            width: 14px; 
+            height: 14px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            opacity: 0.7; 
+        }
+        .logo-face:nth-child(1) { transform: rotateY(0deg) translateZ(7px); }
+        .logo-face:nth-child(2) { transform: rotateY(90deg) translateZ(7px); }
+        .logo-face:nth-child(3) { transform: rotateY(180deg) translateZ(7px); }
+        .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(7px); }
+        .logo-face:nth-child(5) { transform: rotateX(90deg) translateZ(7px); }
+        .logo-face:nth-child(6) { transform: rotateX(-90deg) translateZ(7px); }
+        
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 15px; font-weight: 400; letter-spacing: 1px; position: relative; transition: all 0.3s ease; padding: 8px 0; }
+        .nav-links li a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background: #fff; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: translateX(-50%); }
+        .nav-links li a:hover { color: #ffffff; }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 10; } /* Added z-index for mobile button */
+        .mobile-menu-btn span { width: 30px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 3px; }
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                background: rgba(5, 5, 5, 0.98); 
+                flex-direction: column; 
+                padding: 30px; 
+                gap: 20px; 
+                backdrop-filter: blur(20px); 
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: flex; }
+            .nav-container { padding: 15px 30px; }
+        }
+
+         /* --- STAR BACKGROUND --- */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* FIX: Set to -1 so it doesn't overlap content */
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* --- LAYOUT AND HERO --- */
+        .container {
+            position: relative;
+            z-index: 1;
+            /* height: 100vh; Removed height: 100vh so content can flow naturally */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: calc(100vh - 40px - 54px); /* Adjusted min-height (Viewport - Announcement - Nav Height) */
+            padding: 10px 20px 0; /* Adjusted padding */
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 20px; /* Added top padding to clear the fixed nav bar */
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-stars {
+            color: #ffd700;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #1a1a1a 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            color: #aaaaaa;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- SCROLLING BANNER --- */
+        .banner-section {
+            /* FIX: Removed margin-top: -300px; to prevent severe overlap */
+            width: 100%;
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            padding-bottom: 80px; /* Added spacing before services */
+        }
+
+        .scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .scroll-content {
+            display: flex;
+            gap: 12px;
+            will-change: transform;
+        }
+
+        .scroll-content.row1 {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .scroll-content.row2 {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        .scroll-content:hover {
+            animation-play-state: paused;
+        }
+
+        .image-card {
+            width: 200px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #555;
+            transition: all 0.3s ease;
+            background: #111;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+            border-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none; 
+            padding: 0;
+            font-size: 0;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            border-radius: 8px; 
+            filter: grayscale(100%) contrast(1.1); 
+            transition: filter 0.3s ease;
+        }
+        
+        .image-card:hover .card-image {
+            filter: grayscale(80%) contrast(1.2) brightness(1.1); 
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .image-card {
+                width: 150px;
+                height: 90px;
+            }
+
+            .hero {
+                padding: 60px 20px 10px;
+            }
+
+            .badge {
+                font-size: 10px;
+                padding: 5px 12px;
+            }
+        }
+        
+        /* --- SERVICES GRID STYLES --- */
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 80px 20px; /* Adjusted top padding */
+        }
+
+        .services-header h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+
+        .services-header p {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: #aaaaaa;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #0a0a0a;
+            border: 1px solid #222222;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: #181818;
+            border-color: #cccccc;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.15); 
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #cccccc;
+            margin-bottom: 15px;
+            display: inline-block;
+            line-height: 1;
+            transition: color 0.4s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            color: #ffffff;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            color: #999999;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .badge {
+            color: #c0c0c0;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #a0a0a0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+        .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
+        .testimonial-card:nth-child(5) { animation-delay: 0.5s; }
+        .testimonial-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c0c0c0, #ffffff, #c0c0c0);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: #404040;
+            box-shadow: 0 20px 60px rgba(192, 192, 192, 0.1);
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 25px;
+        }
+
+        .review-star {
+            color: #FFD700;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+        }
+
+        .testimonial-card:hover .review-star {
+            color: #FFC300;
+            transform: scale(1.1) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .testimonial-card:hover .review-star:nth-child(1) { transition-delay: 0s; }
+        .testimonial-card:hover .review-star:nth-child(2) { transition-delay: 0.05s; }
+        .testimonial-card:hover .review-star:nth-child(3) { transition-delay: 0.1s; }
+        .testimonial-card:hover .review-star:nth-child(4) { transition-delay: 0.15s; }
+        .testimonial-card:hover .review-star:nth-child(5) { transition-delay: 0.2s; }
+
+        .quote {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            font-size: 80px;
+            color: #2a2a2a;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c0c0c0, #808080);
+            border: 2px solid #2a2a2a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar::before {
+            content: 'ET';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .testimonial-card:hover .avatar {
+            transform: scale(1.1);
+            border-color: #c0c0c0;
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            color: #808080;
+            font-weight: 300;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                padding: 30px;
+            }
+
+            body {
+                padding: 40px 15px;
+            }
+        }
+
+        /* Sparkle effect on hover */
+        .testimonial-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(192, 192, 192, 0.1), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            pointer-events: none;
+        }
+
+        .testimonial-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="scroll-text">
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+            <span>Pioneering Tomorrow's Solutions</span>
+            <span>✦</span>
+            <span>Engineering with Precision</span>
+            <span>✦</span>
+            <span>A Legacy of Excellence</span>
+            <span>✦</span>
+            <span>Dark White Technologies</span>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-cube-wrapper">
+                    <div class="logo-cube">
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                        <div class="logo-face"></div>
+                    </div>
+                </div>
+                <div class="logo-text-wrapper">
+                    <span class="main-logo-text">DARK WHITE</span>
+                    <span class="logo-subtitle">TECHNOLOGIES</span>
+                </div>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+     <div class="stars" id="starsContainer"></div>
+
+    <div class="container" id="home">
+        <div class="hero">
+            <div class="badge">
+                <span class="badge-stars">★★★★★</span>
+                <span>Elite Digital Presence</span>
+            </div>
+
+            <h1>
+                <span class="highlight">Unrivaled</span><br>
+                Digital Mastery.
+            </h1>
+
+            <p class="subtitle">
+                **DarkWhite's** affordable and classy services craft an **exclusive web presence** that captivates and converts. Elevate your brand with striking design and seamless functionality.
+            </p>
+        </div>
+
+      <div class="banner-section">
+        <div class="scroll-container">
+            <div class="scroll-content row1">
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400" alt="Portfolio Website Mockup" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400" alt="Landing Page Design" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400" alt="Mobile App Screen" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400" alt="E-Commerce Interface" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="SaaS Dashboard UI" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400" alt="Brand Style Guide" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Speed Optimization Graph" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400" alt="Corporate Website" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400" alt="Portfolio Website Mockup" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400" alt="Landing Page Design" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400" alt="Mobile App Screen" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400" alt="E-Commerce Interface" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="SaaS Dashboard UI" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400" alt="Brand Style Guide" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Speed Optimization Graph" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400" alt="Corporate Website" class="card-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-container">
+            <div class="scroll-content row2">
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400" alt="Clean Blog Layout" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Data Visualization Dashboard" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400" alt="Server Room" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Cross-Browser Test" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400" alt="Accessibility Checklist" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400" alt="SEO Results Snippet" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400" alt="Interactive Web App" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=400" alt="Parallax Scrolling Effect" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400" alt="Clean Blog Layout" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Data Visualization Dashboard" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400" alt="Server Room" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Cross-Browser Test" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400" alt="Accessibility Checklist" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400" alt="SEO Results Snippet" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400" alt="Interactive Web App" class="card-image">
+                    </div>
+                </div>
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=400" alt="Parallax Scrolling Effect" class="card-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="services-container" id="services">
+        <div class="services-header">
+            <h2>Our Core Services</h2>
+            <p>We deliver sophisticated digital solutions, blending cutting-edge technology with elegant, dark-themed design for ultimate performance and security.</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-code"></i> 
+                </span>
+                <h3>Custom Web Development</h3>
+                <p>Building bespoke websites and applications using modern frameworks (React, Next.js) for speed, scalability, and unique functionality.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-shield-alt"></i> 
+                </span>
+                <h3>Security & Compliance</h3>
+                <p>Implementing advanced security protocols, penetration testing, and GDPR/CCPA compliance to protect your data and reputation.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-cloud"></i> 
+                </span>
+                <h3>Cloud & DevOps Solutions</h3>
+                <p>Seamless deployment and maintenance using AWS/Azure/GCP, ensuring $99.99\%$ uptime, automated scaling, and continuous delivery.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-drafting-compass"></i>
+                </span>
+                <h3>UX/UI Mastery</h3>
+                <p>Crafting intuitive user interfaces and compelling user experiences focused on conversion, readability, and DarkWhite's signature aesthetic.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </span>
+                <h3>Performance Optimization</h3>
+                <p>Tuning backend and frontend performance for lightning-fast load times and high Core Web Vitals scores, essential for SEO and user retention.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </span>
+                <h3>Digital Brand Identity</h3>
+                <p>Defining your brand's voice, visual assets, and online presence to ensure a cohesive, professional, and memorable impact across all platforms.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="badge">Testimonials</div>
+            <h1 class="main-title">Over 100+ people trust us</h1>
+            <p class="subtitle">Indulge in sophistication with our luxury collection, showcasing high-end vehicles that elevate your travel experience.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">Exceptional service! Rented a car for a weekend trip, and everything was smooth from start to finish. The car was clean, and the staff was friendly. Highly recommended!</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">Kudos for the transparency in pricing. No hidden fees, and the cost breakdown was clear. It made budgeting for my trip stress-free. Great job, AlphaCars</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">Tech-savvy rides made my business trip seamless. The advanced features and connectivity options were a game-changer. A reliable choice for the modern traveler.</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">A diverse fleet to choose from! I rented a compact car for my daily commute, and it was fuel-efficient and reliable. The variety of options is a big plus. Thank you!</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">A diverse fleet to choose from! I rented a compact car for my daily commute, and it was fuel-efficient and reliable. The variety of options is a big plus. Thank you!</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="review-stars">
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                    <span class="review-star">★</span>
+                </div>
+                <p class="quote">Environmentally conscious options are a winner! I chose an eco-friendly car, and it was not only efficient but also aligned with my values. A great initiative.</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <div class="author-name">Emily Thompson</div>
+                        <div class="author-role">Tourist</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div id="footer-placeholder"></div>
+    
+
+    <script>
+        // --- JavaScript for Navigation ---
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (navbar) {
+                // Change class when scrolling past the announcement bar height (40px)
+                if (window.scrollY > 40) { 
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    // Calculate scroll position to account for fixed navbar height
+                    const headerOffset = 95; // 40px (announcement) + ~55px (nav height)
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // --- Star Background Generation ---
+        const starsContainer = document.getElementById('starsContainer');
+        
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.testimonial-card');
+            
+            // Add click ripple effect
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(192, 192, 192, 0.3)';
+                    ripple.style.width = '100px';
+                    ripple.style.height = '100px';
+                    ripple.style.left = e.offsetX - 50 + 'px';
+                    ripple.style.top = e.offsetY - 50 + 'px';
+                    ripple.style.pointerEvents = 'none';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                from {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        
+    </script>
+</html>
