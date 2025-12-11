@@ -3,49 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark White Technologies | About Us</title>
+    <title>Dark White Technologies Navigation Bar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ------------------------------------------- */
-        /* BASE & THEME */
-        /* ------------------------------------------- */
-        :root {
-            --color-dark: #000000;
-            --color-light: #ffffff;
-            --color-silver: #CCCCCC;
-            --color-darker: #050505;
-            --font-family-body: 'Poppins', sans-serif;
-        }
-
+        /* ============================== */
+        /* 1. BASE STYLES & RESET */
+        /* ============================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: var(--font-family-body);
-            background: var(--color-darker);
-            color: var(--color-light);
-            min-height: 200vh;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background: #050505; /* Deep Black Background */
+            color: #fff;
+            /* Added min-height to allow scrolling for sticky effect demonstration */
+            min-height: 200vh; 
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* ------------------------------------------- */
-        /* ANNOUNCEMENT BAR */
-        /* ------------------------------------------- */
+        
+        /* ============================== */
+        /* 2. ANNOUNCEMENT BAR */
+        /* ============================== */
         .announcement-bar {
-            position: sticky;
-            top: 0;
-            z-index: 1001;
+            position: sticky; 
+            top: 0; 
+            z-index: 1001; 
             background: rgba(10, 10, 10, 0.5);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -72,12 +58,12 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ------------------------------------------- */
-        /* NAVIGATION BAR */
-        /* ------------------------------------------- */
+        /* ============================== */
+        /* 3. NAVIGATION BAR (Sticky) */
+        /* ============================== */
         nav {
             position: sticky;
-            top: 40px;
+            top: 40px; /* Sticks 40px below the top (where the announcement bar is) */
             z-index: 1000;
             background: rgba(5, 5, 5, 0.6);
             backdrop-filter: blur(20px);
@@ -86,7 +72,7 @@
         }
         nav.scrolled {
             background: rgba(5, 5, 5, 0.9);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         .nav-container {
             max-width: 1400px;
@@ -97,229 +83,358 @@
             padding: 20px 50px;
         }
 
-        /* Logo Styling */
+        /* Logo and Text */
         .logo { display: flex; align-items: center; gap: 15px; cursor: pointer; }
-        .logo-text-wrapper { display: flex; flex-direction: column; gap: 0; line-height: 1.2; }
-        .main-logo-text { font-size: 20px; font-weight: 500; letter-spacing: 3px; color: var(--color-light); line-height: 1; }
-        .logo-subtitle { font-size: 10px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; line-height: 1; }
-        
-        /* Cube 3D */
-        .logo-cube-wrapper { height: 20px; width: 20px; perspective: 500px; margin-right: 10px; }
+        .logo-text-wrapper { display: flex; flex-direction: column; justify-content: column; gap:0; }
+        .main-logo-text { font-size: 24px; font-weight: 500; letter-spacing: 3px; color: #e0e0e0; margin-left: 50px; margin-top: -30px; }
+        .logo-subtitle { font-size: 11px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.5); margin-left:50px; text-transform: uppercase; line-height: 1; }
+
+        /* Logo Cube (Basic 3D) */
+        .logo-cube-wrapper { height: 14px; width: 14px; perspective: 500px; }
         .logo-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spin 12s linear infinite; }
         @keyframes spin { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
-        .logo-face { position: absolute; width: 20px; height: 20px; background: rgba(204, 204, 204, 0.1); border: 1px solid rgba(204, 204, 204, 0.3); opacity: 0.8; }
-        .logo-face:nth-child(1) { transform: rotateY(0deg) translateZ(10px); }
-        .logo-face:nth-child(2) { transform: rotateY(90deg) translateZ(10px); }
-        .logo-face:nth-child(3) { transform: rotateY(180deg) translateZ(10px); }
-        .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(10px); }
-        .logo-face:nth-child(5) { transform: rotateX(90deg) translateZ(10px); }
-        .logo-face:nth-child(6) { transform: rotateX(-90deg) translateZ(10px); }
-        
+        .logo-face { position: absolute; width: 24px; height: 24px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); opacity: 0.7; }
+        .logo-face:nth-child(1) { transform: rotateY(0deg) translateZ(12px); }
+        .logo-face:nth-child(2) { transform: rotateY(90deg) translateZ(12px); }
+        .logo-face:nth-child(3) { transform: rotateY(180deg) translateZ(12px); }
+        .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(12px); }
+        .logo-face:nth-child(5) { transform: rotateX(90deg) translateZ(12px); }
+        .logo-face:nth-child(6) { transform: rotateX(-90deg) translateZ(12px); }
+
         /* Navigation Links */
         .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links li a { 
-            color: rgba(255, 255, 255, 0.7); 
-            text-decoration: none; 
-            font-size: 15px; 
-            font-weight: 400; 
-            letter-spacing: 1px; 
-            position: relative; 
-            transition: all 0.3s ease; 
-            padding: 8px 0; 
-        }
-        .nav-links li a::after { 
-            content: ''; 
-            position: absolute; 
-            bottom: 0; 
-            left: 50%; 
-            width: 0; 
-            height: 1px; 
-            background: var(--color-silver);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
-            transform: translateX(-50%); 
-        }
-        .nav-links li a:hover { color: var(--color-light); }
+        .nav-links li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 15px; font-weight: 400; letter-spacing: 1px; position: relative; transition: all 0.3s ease; padding: 8px 0; }
+        .nav-links li a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background: #fff; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: translateX(-50%); }
+        .nav-links li a:hover { color: #ffffff; }
         .nav-links li a:hover::after { width: 100%; }
 
         /* Mobile Menu Button */
         .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; }
         .mobile-menu-btn span { width: 30px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 3px; }
+
+        /* Mobile Media Query */
         @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                right: 0; 
-                background: rgba(5, 5, 5, 0.98); 
-                flex-direction: column; 
-                padding: 30px; 
-                gap: 20px; 
-                backdrop-filter: blur(20px); 
-            }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(5, 5, 5, 0.98); flex-direction: column; padding: 30px; gap: 20px; backdrop-filter: blur(20px); }
             .nav-links.active { display: flex; }
             .mobile-menu-btn { display: flex; }
             .nav-container { padding: 20px 30px; }
         }
 
-        /* ------------------------------------------- */
-        /* ABOUT US SECTION - OPTIMIZED STYLES */
-        /* ------------------------------------------- */
-        .about-us-section {
-        margin-top: -5px;
-            min-height: calc(100vh - 40px - 60px); 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-      
-        }
-
-        .about-header {
-            font-size: clamp(45px, 6vw, 120px);
-            font-weight: 900;
-            line-height: 0.8;
-            letter-spacing: -5px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        /* NEW GRID STRUCTURE: Text | Image | Text (Center image dominance) */
-        .about-content-grid {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr; /* Central image takes more space */
-            gap: 60px; /* Increased gap for better breathing room */
-            align-items: center;
-        }
-
-        /* Left Text Column */
-        .left-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Reduced gap */
-        }
-
-        .tagline {
-            font-size: 15px; /* Slightly smaller */
-            font-weight: 500;
-            color: var(--color-silver);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .mission-text {
-            font-size: 13px; /* Smaller body text */
-            color: #AAAAAA;
-            line-height: 1.7;
-        }
-
-        /* Image Interactivity Base Style */
-        .image-wrapper {
+        .about-us-hero {
             width: 100%;
-            height: 450px;
+            height: 45vh; /* 45% of the viewport height */
+            position: relative; /* Scrolls with the page content */
             overflow: hidden;
-            border-radius: 10px; /* Slightly softer corners */
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Enhanced transition curve */
-        }
-        
-        /* Interactive Hover Effect */
-        .image-wrapper:hover {
-            transform: scale(1.04) rotate(0.5deg); /* Added slight rotation for flair */
-            box-shadow: 0 35px 70px rgba(204, 204, 204, 0.25); /* Stronger silver shadow */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; 
         }
 
-        .image-wrapper img {
+        /* 3. Dynamic Background Slider (Motion Frame Effect) */
+        .background-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.8;
+            /* Added animation for subtle flickering/glitch effect */
+            animation: flicker 10s infinite alternate; 
+        }
+
+        /* Flicker Animation (Movie Style) */
+        @keyframes flicker {
+            0%, 100% { filter: brightness(1) contrast(1); }
+            5% { filter: brightness(0.9) contrast(1.1); }
+            10% { filter: brightness(1.1) contrast(0.9); }
+            15% { filter: brightness(1) contrast(1); }
+            20% { filter: brightness(0.95) contrast(1.05); }
+        }
+
+        /* Shared style for all background images */
+        .background-slider img {
+            position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(10%);
-            transition: filter 0.4s ease;
-        }
-        .image-wrapper:hover img {
-             filter: grayscale(0%);
-        }
-
-        /* Center Image Column */
-        .center-image-wrapper {
-            height: 550px; /* Increased height for dominance */
-            grid-column: 2 / 3;
-            align-self: start;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out; /* Faster transition for "motion frame" feel */
+            filter: grayscale(100%) brightness(0.6); 
+            transform: scale(1.02); /* Less aggressive zoom */
         }
 
-        /* Right Philosophy Column */
-        .right-philosophy {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Reduced gap */
-            align-items: flex-start;
-        }
-
-        .philosophy-image-wrapper {
-            height: 180px; /* Adjusted height */
-        }
-
-        .philosophy-title {
-            font-size: 20px; /* Slightly smaller title */
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            margin-top: 5px;
-        }
-
-        .philosophy-text {
-            font-size: 13px; /* Smaller body text */
-            color: #AAAAAA;
-            line-height: 1.7;
+        .background-slider img.active {
+            opacity: 1;
+            transform: scale(1);
         }
         
-        /* ------------------------------------------- */
-        /* RESPONSIVENESS */
-        /* ------------------------------------------- */
-        @media (max-width: 1024px) {
-            .container { padding: 0 30px; }
-            .about-header { font-size: clamp(60px, 10vw, 120px); margin-bottom: 30px; }
-            
-            /* Revert to balanced grid on tablet */
-            .about-content-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-            .center-image-wrapper { height: 350px; grid-column: 1 / 3; }
-            
-            /* Reordered for mobile flow */
-            .right-philosophy { grid-column: 2 / 3; grid-row: 1 / 2; }
-            .left-info { grid-column: 1 / 2; grid-row: 1 / 2; }
-
-            /* Reset image hover on smaller screens for performance */
-            .image-wrapper:hover { transform: none; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05); }
+        /* Dark Overlay */
+        .background-slider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); 
+            opacity: 1;
+            z-index: 5;
         }
 
-        @media (max-width: 640px) {
-            .about-us-section { padding: 60px 0; }
-            .about-header { text-align: center; font-size: 50px; letter-spacing: -3px; }
-            .about-content-grid { grid-template-columns: 1fr; }
-            .left-info, .right-philosophy { 
-                grid-column: 1 / 2; 
-                grid-row: auto; 
-                padding: 0; 
-                text-align: center; 
-                align-items: center; 
+        /* 4. Foreground Content */
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 50px 0;
+            width: 90%; 
+            max-width: 1000px;
+        }
+
+        .main-title {
+            font-size: 4vw; 
+            font-weight: 700;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 15px rgba(200, 200, 200, 0.1); 
+        }
+
+        .subtitle {
+            font-size: 1.4vw;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #e0e0e0; 
+            margin-bottom: 50px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 5. Formal Stats Bar */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+            position: relative; 
+        }
+        
+        /* Vertical separators */
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 1.8vw;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .stat-label {
+            font-size: 0.9vw;
+            font-weight: 300;
+            color: #888888;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* Content area below the Hero */
+        .main-content {
+            position: relative; /* Standard flow */
+            padding: 50px 30px;
+            background-color: #050505;
+            border-top: 5px solid #0a0a0a;
+        }
+
+        /* Media Query for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .about-us-hero { height: 45vh; }
+            .main-title { font-size: 8vw; letter-spacing: 3px; }
+            .subtitle { font-size: 3vw; letter-spacing: 1px; }
+            .stats-container { flex-wrap: wrap; justify-content: space-between; padding: 10px 0; }
+            .stat-item { padding: 5px 10px; width: 30%; }
+            .stat-number { font-size: 4vw; color: #ffffff; }
+            .stat-label { font-size: 2vw; }
+            .stat-item:not(:last-child)::after { display: none; }
+        }
+
+        :root {
+        /* Generate 3 unique layers of random stars using box-shadow (scaled down for brevity) */
+        --star-layer-1: 0.1vw 0.1vh #fff, 0.4vw 0.2vh #fff, 0.7vw 0.9vh #fff, 0.5vw 0.5vh #fff, 0.9vw 0.1vh #fff, 0.2vw 0.8vh #fff, 0.6vw 0.4vh #fff, 0.8vw 0.7vh #fff, 0.3vw 0.6vh #fff, 0.45vw 0.25vh #fff, 0.15vw 0.95vh #fff, 0.75vw 0.55vh #fff, 0.95vw 0.35vh #fff, 0.25vw 0.75vh #fff, 0.85vw 0.15vh #fff, 0.55vw 0.45vh #fff, 0.35vw 0.85vh #fff, 0.65vw 0.65vh #fff;
+        --star-layer-2: 0.3vw 0.5vh #fff, 0.6vw 0.1vh #fff, 0.2vw 0.3vh #fff, 0.8vw 0.6vh #fff, 0.4vw 0.9vh #fff, 0.7vw 0.2vh #fff, 0.1vw 0.7vh #fff, 0.5vw 0.4vh #fff, 0.9vw 0.8vh #fff;
+        --star-layer-3: 0.25vw 0.75vh #fff, 0.75vw 0.25vh #fff, 0.45vw 0.95vh #fff, 0.15vw 0.35vh #fff, 0.85vw 0.65vh #fff, 0.55vw 0.15vh #fff, 0.95vw 0.45vh #fff, 0.35vw 0.85vh #fff, 0.65vw 0.55vh #fff;
+    }
+    
+    /* 1. Full-Page Starry Background Setup (REQUIRED FOR EFFECT) */
+    .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; 
+        overflow: hidden;
+        
+        /* Deep space nebula/cloud effect */
+        background: 
+            #000000, 
+            radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    }
+
+    /* Star containers for twinkling box-shadows */
+    .stars > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        animation: twinkle 5s infinite alternate; 
+    }
+
+    /* Star creation using box-shadow layers */
+    #stars1 { box-shadow: var(--star-layer-1); animation-duration: 120s; }
+    #stars2 { box-shadow: var(--star-layer-2); animation-duration: 180s; }
+    #stars3 { box-shadow: var(--star-layer-3); animation-duration: 240s; }
+
+    /* Twinkling Keyframes */
+    @keyframes twinkle {
+        0% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(1.05); filter: brightness(1.2); }
+        100% { opacity: 0.7; transform: scale(1); }
+    }
+
+    /* Title Animation */
+    @keyframes pulse-glow {
+        0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.05); }
+        50% { text-shadow: 0 0 8px #ffffff, 0 0 15px rgba(255, 255, 255, 0.1); }
+        100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.05); }
+    }
+
+    /* Global base for font/color within this section */
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+    }
+    
+    /* 6. OUR PHILOSOPHY Section Styling */
+    .philosophy-section {
+        position: relative; 
+        padding: 80px 30px; 
+        background-color: rgba(5, 5, 5, 0.85); /* Semi-transparent background for content */
+        border-top: 1px solid #1a1a1a;
+        text-align: center;
+        z-index: 20; 
+    }
+    
+    .philosophy-section h2 {
+        font-size: 2.5vw;
+        font-weight: 600;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        margin-bottom: 40px;
+        display: inline-block; 
+        padding-bottom: 5px;
+        border-bottom: 1px solid #444; 
+        animation: pulse-glow 3s infinite ease-in-out;
+    }
+
+    .philosophy-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .philosophy-paragraph {
+        font-size: 1.1rem; 
+        color: #c0c0c0;
+        line-height: 1.8;
+        text-align: center; 
+        padding: 20px 40px;
+        background-color: rgba(0, 0, 0, 0.6); 
+    }
+    
+    .philosophy-paragraph strong {
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    /* Media Query for Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .philosophy-section h2 { font-size: 5vw; letter-spacing: 3px; }
+        .philosophy-paragraph { font-size: 1rem; text-align: center; padding: 15px 10px; }
+    }
+
+
+        /* Star Background */
+        #star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .nebula {
+            position: absolute;
+            opacity: 0.15;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: -2;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.7;
+                transform: scale(1);
             }
-            .center-image-wrapper { 
-                height: 300px; 
-                grid-column: 1 / 2; 
-                grid-row: 2 / 3; 
+            50% {
+                opacity: 0.2;
+                transform: scale(0.8);
             }
         }
 
-         .container {
+        .container {
             max-width: 1400px;
-            
-            margin-bottom: 100px;
+            margin: 0 auto;
+            padding: 80px 40px;
         }
 
-        /* --- Team Section Header --- */
+        /* Header */
         .header {
             text-align: center;
             margin-bottom: 4rem;
-      
         }
 
         .header h1 {
@@ -328,9 +443,10 @@
             line-height: 0.8;
             letter-spacing: -5px;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            transition: text-shadow 0.3s ease;
         }
-        
+
         .header h1:hover {
             text-shadow: 
                 0 0 15px rgba(255, 255, 255, 0.9), 
@@ -343,31 +459,28 @@
             color: #999;
             font-weight: 300;
         }
-        /* ------------------------------------- */
 
-        /* Services Grid - 3D Carousel Container */
+        /* 3D Carousel Container */
         .services-grid-wrapper {
-            perspective: 1500px; 
+            perspective: 1500px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 700px; 
+            height: 700px;
             margin-bottom: 2rem;
         }
 
         .services-grid {
-            width: 400px; 
+            width: 400px;
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1); 
+            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
         /* Service Card */
         .service-card {
             background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            
-            /* Classy Background Effect: Subtle Diagonal Stripes */
             background-image: repeating-linear-gradient(
                 45deg,
                 rgba(255, 255, 255, 0.03) 0,
@@ -375,7 +488,6 @@
                 transparent 1px,
                 transparent 10px
             );
-
             border-radius: 30px;
             overflow: hidden;
             border: 1px solid #2a2a2a;
@@ -383,12 +495,14 @@
             top: 50%;
             left: 50%;
             width: 350px;
-            height: 600px; 
-            margin: -300px -175px; 
+            height: 600px;
+            margin: -300px -175px;
             cursor: pointer;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform-origin: 50% 50%; 
+            transform-origin: 50% 50%;
         }
 
         .service-card:nth-child(1) {
@@ -403,49 +517,44 @@
             transform: rotateY(240deg) translateZ(400px);
         }
 
-        /* Card Hover Effect: Subtle Glow (Kept) */
         .service-card:hover {
             border-color: #666;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
         }
 
         .image-container {
             position: relative;
             background: #111;
             overflow: hidden;
-            height: 100%; 
+            height: 100%;
         }
-        
+
         .service-image {
             width: 100%;
-            height: 100%; 
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #111; 
+            background: #111;
             position: relative;
         }
-        
-        /* Image Style */
+
         .service-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
-            opacity: 0.8; 
-            /* Added transition for new effects */
-            transition: opacity 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.4s ease;
         }
 
-        /* >>> EMPHASIS EFFECT ADDED HERE <<< */
         .service-card:hover .service-image img {
             opacity: 1;
-            transform: scale(1.05); /* Slight zoom for emphasis */
-            box-shadow: 0 0 20px rgba(var(--color-silver), 0.5), 0 0 40px rgba(255, 255, 255, 0.2); /* Silver/White Glow */
+            transform: scale(1.05);
         }
 
         .name-badge {
             position: absolute;
-            top: 20px; 
+            top: 20px;
             right: 20px;
             background: white;
             color: #000;
@@ -468,52 +577,50 @@
             border-radius: 50%;
         }
 
-        /* --- Content Section: Transparent Overlay (Kept) --- */
         .content {
-            position: absolute; 
+            position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 1.5rem 1.75rem 1.75rem; 
-            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); /* Add slight gradient for better contrast over image */
+            padding: 1.5rem 1.75rem 1.75rem;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
             z-index: 5;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); 
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
         .service-number {
             display: inline-block;
-            background: none; 
+            background: none;
             color: #fff;
-            padding: 0.25rem 0.75rem; 
+            padding: 0.25rem 0.75rem;
             border-radius: 10px;
-            font-size: 1rem; 
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 0.5rem; 
-            border: 1px solid #fff; 
+            margin-bottom: 0.5rem;
+            border: 1px solid #fff;
         }
 
         .service-title {
-            font-size: 1.5rem; 
+            font-size: 1.5rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 0.5rem;
             line-height: 1.2;
         }
-        
+
         .service-description {
-            font-size: 0.875rem; 
-            color: #fff; 
+            font-size: 0.875rem;
+            color: #fff;
             line-height: 1.4;
             font-weight: 300;
-            max-height: 5.6em; 
+            max-height: 5.6em;
             overflow: hidden;
             display: -webkit-box;
-            -webkit-line-clamp: 4; 
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
         }
-        /* ------------------------------------------------ */
 
-        /* --- Navigation Arrows: Classy White Circles (Kept) --- */
+        /* Navigation Arrows */
         .navigation {
             text-align: center;
             margin-top: 4rem;
@@ -523,14 +630,14 @@
             background: none;
             color: #fff;
             border: none;
-            padding: 1rem 1rem; 
+            padding: 1rem;
             margin: 0 1rem;
             cursor: pointer;
-            border-radius: 50%; 
-            font-size: 1.2rem; 
+            border-radius: 50%;
+            font-size: 1.2rem;
             font-weight: 700;
             transition: background 0.3s, transform 0.3s, color 0.3s, box-shadow 0.3s;
-            width: 50px; 
+            width: 50px;
             height: 50px;
             line-height: 1;
             display: inline-flex;
@@ -539,21 +646,18 @@
         }
 
         .nav-arrow:hover {
-            background: #fff; 
+            background: #fff;
             color: #000;
             transform: scale(1.1);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
-        /* ----------------------------------------------- */
 
-        /* === Responsive Design (Phone Compatibility) === */
+        /* Responsive Design */
         @media (max-width: 900px) {
-            /* Disable 3D view and make the section auto-height */
             .services-grid-wrapper {
                 perspective: none;
                 height: auto;
-                /* Add horizontal padding to prevent cards from touching screen edges */
-                padding: 0 1rem; 
+                padding: 0 1rem;
             }
 
             .services-grid {
@@ -565,101 +669,59 @@
                 gap: 2rem;
             }
 
-            /* Make cards full width and stack vertically */
             .service-card {
                 position: static;
                 width: 100%;
-                height: 400px; 
+                height: 400px;
                 margin: 0;
                 transform: none !important;
                 opacity: 1;
-                /* Remove the diagonal pattern on mobile if preferred, or keep it */
                 background-image: none;
             }
 
             .service-card:hover {
                 transform: none !important;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Keep original shadow */
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
             .service-card:hover .service-image img {
-                transform: none; /* Disable zoom on mobile */
-                box-shadow: none; /* Disable box-shadow glow on mobile */
+                transform: none;
             }
 
             .image-container {
-                height: 100%; 
+                height: 100%;
             }
 
             .content {
-                background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); 
+                background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
                 padding: 1rem 1.25rem;
             }
 
             .navigation {
-                display: none; 
+                display: none;
             }
-            
+
             .header h1 {
                 font-size: 3rem;
             }
         }
 
-        /* ------------------------------------------- */
-        /* STAR AND NEBULA STYLES */
-        /* ------------------------------------------- */
-        #star-container {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* CRUCIAL: Must be behind all content */
-        }
 
-        .star {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: twinkle linear infinite;
-        }
-
-        .nebula {
-            position: absolute;
-            opacity: 0.15; /* Subtle and translucent */
-            border-radius: 50%;
-            filter: blur(50px); /* Gaseous look */
-            z-index: -2; /* Behind the stars */
-        }
-        
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.2;
-                transform: scale(0.8);
-            }
-        }
-
-
-        .container-1 { /* RENAMED FROM .container */
+        .container-1 {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 4rem;
             align-items: start;
-          
         }
 
-        /* --- 2. Left Section (Header & CTA) --- */
+        /* Left Section */
         .left-section {
             position: sticky;
             top: 4rem;
             padding-right: 2rem;
-            padding-bottom: 2rem; 
+            padding-bottom: 2rem;
         }
 
         .main-title {
@@ -668,7 +730,7 @@
             line-height: 1;
             margin-bottom: 3rem;
             letter-spacing: -0.03em;
-            color: var(--color-white);
+            color: var(--color-light);
         }
 
         .cta-group {
@@ -683,20 +745,17 @@
             margin-bottom: 0.25rem;
             font-weight: 300;
         }
-        
-        /* New/Restored Chat Button Styling */
-   /* /* New/Restored Chat Button Styling */
+
         .chat-button-container {
             position: relative;
-            display: inline-block; 
+            display: inline-block;
             margin-top: 2rem;
         }
 
         .chat-button {
             width: 90px;
             height: 90px;
-            /* Blue background */
-            background: #fff; 
+            background: #fff;
             border-radius: 50%;
             border: none;
             cursor: pointer;
@@ -709,20 +768,18 @@
 
         .chat-button:hover {
             transform: scale(1.05) rotate(-3deg);
-            box-shadow: 0 20px 60px #fff; 
+            box-shadow: 0 20px 60px #fff;
         }
 
         .chat-icon-svg {
             width: 50px;
             height: 50px;
-            /* FIX: Set both stroke and fill properties */
-            stroke: var(--color-white); 
-            fill: var(--color-white); /* Important: Ensure the fill is white */
+            stroke: var(--color-darker);
+            fill: var(--color-darker);
             stroke-width: 1.5;
         }
-        /* Arrow pointer styles removed as requested */
 
-        /* --- 3. Right Section (FAQ) --- */
+        /* Right Section - FAQ */
         .faq-section {
             background: var(--color-dark-gray);
             border-radius: 30px;
@@ -756,9 +813,10 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--color-border);
             border-radius: 20px;
-            color: var(--color-white);
+            color: var(--color-light);
             font-size: 1rem;
             font-weight: 300;
+            font-family: var(--font-family-body);
             transition: all 0.3s ease;
         }
 
@@ -785,7 +843,7 @@
             transition: opacity 0.3s ease;
             opacity: 0;
         }
-        
+
         #search-results-count.active {
             opacity: 1;
         }
@@ -803,15 +861,14 @@
             overflow: hidden;
             transition: all 0.3s ease;
             margin-bottom: 0.75rem;
-            opacity: 0; /* For animation */
+            opacity: 0;
         }
 
         .faq-item:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: #3a3a3a;
         }
-        
-        /* Highlight on search match */
+
         .faq-item.search-match {
             border-color: var(--color-light-silver);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -827,9 +884,10 @@
             padding: 1.75rem 2rem;
             background: none;
             border: none;
-            color: var(--color-white);
+            color: var(--color-light);
             font-size: 1.1rem;
             font-weight: 600;
+            font-family: var(--font-family-body);
             text-align: left;
             cursor: pointer;
             display: flex;
@@ -851,7 +909,7 @@
 
         .faq-item.active .chevron-svg {
             transform: rotate(180deg);
-            stroke: var(--color-white);
+            stroke: var(--color-light);
         }
 
         .faq-answer {
@@ -881,7 +939,7 @@
             margin-bottom: 0;
         }
 
-        /* --- 4. Animations --- */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -904,9 +962,9 @@
         .faq-item:nth-child(4) { animation-delay: 0.4s; }
         .faq-item:nth-child(5) { animation-delay: 0.5s; }
 
-        /* --- 5. Responsive Design --- */
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .container-1 { /* RENAMED FROM .container */
+            .container-1 {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
@@ -954,8 +1012,6 @@
     </style>
 </head>
 <body>
-    <div id="star-container">
-        </div>
 
     <div class="announcement-bar">
         <div class="scroll-text">
@@ -979,17 +1035,17 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-cube-wrapper">
-                    <div class="logo-cube">
-                        <div class="logo-face"></div>
-                        <div class="logo-face"></div>
-                        <div class="logo-face"></div>
-                        <div class="logo-face"></div>
-                        <div class="logo-face"></div>
-                        <div class="logo-face"></div>
-                    </div>
-                </div>
                 <div class="logo-text-wrapper">
+                    <div class="logo-cube-wrapper">
+                        <div class="logo-cube">
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                            <div class="logo-face"></div>
+                        </div>
+                    </div>
                     <span class="main-logo-text">DARK WHITE</span>
                     <span class="logo-subtitle">TECHNOLOGIES</span>
                 </div>
@@ -1001,59 +1057,68 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#services-section">Services</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
                 <li><a href="#technology">Technology</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="about-us-section" id="about">
-        <div class="container">
-            <h1 class="about-header">ABOUT<br>US</h1>
-
-            <div class="about-content-grid">
-                <div class="left-info">
-                    <p class="tagline">Digital Innovation & Precision Engineering</p>
-                    <p class="mission-text">
-                        Dark White Technologies is dedicated to pioneering **impactful and sophisticated tech solutions**. We empower businesses across industries to thrive with elegance and precision, leveraging **cutting-edge AI** and robust cloud infrastructure.
-                    </p>
-                    <p class="mission-text">
-                        Our approach combines the stability of established frameworks (The **Dark**) with the agility of new, creative strategies (The **White**), ensuring resilient and future-proof digital transformation.
-                    </p>
-                </div>
-
-                <div class="center-image-wrapper image-wrapper">
-                    <img src="https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg" alt="Modern, clean server room or office space">
-                </div>
-
-                <div class="right-philosophy">
-                    <div class="philosophy-image-wrapper image-wrapper">
-                         <img src="https://images.pexels.com/photos/3747481/pexels-photo-3747481.jpeg" alt="Abstract data flow visualization">
-                    </div>
-                    <h2 class="philosophy-title">Our Philosophy</h2>
-                    <p class="philosophy-text">
-                        We believe that the most powerful technology solutions are those that balance **deep technical complexity** (The Dark) with **unrivaled user simplicity** (The White). This duality guides our design, development, and consulting services.
-                    </p>
-                </div>
+    <section class="about-us-hero">
+    <div class="background-slider" id="backgroundSlider">
+        </div>
+    <div class="content-overlay">
+        <h1 class="main-title">ABOUT DARKWHITE</h1>
+        <p class="subtitle">Engineering the future of autonomous systems and distributed computation.</p>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">4.0</span>
+                <span class="stat-label">GENERATION</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">PROJECTS</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2042</span>
+                <span class="stat-label">VISION</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<div class="stars">
+    <div id="stars1"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<section class="philosophy-section">
+    <h2>Our Philosophy</h2>
+    <div class="philosophy-container">
+        
+        <p class="philosophy-paragraph">
+            Our guiding principle is rooted in **Radical Transparency**, ensuring all our work is built on open standards and auditable processes to provide full visibility and accountability in the digital age. This is paired with a commitment to **Iterative Excellence**, where we view every challenge as an opportunity to refine and rebuild, guaranteeing our systems remain at the technological forefront. Ultimately, every advanced automation system we create adheres to **Human-Centric Design**, specifically engineered to amplify human capability and deliver powerful, intuitive user experiences.
+        </p>
+        
+    </div>
+</section>
+ <div id="star-container"></div>
 
     <div class="container">
         <div class="header">
-            <h1>OUR     TEAM</h1>
+            <h1>OUR TEAM</h1>
             <p>We Grow Businesses Online. Period.</p>
         </div>
 
         <div class="services-grid-wrapper">
-            <div class="services-grid">
+            <div class="services-grid" id="carousel">
                 <div class="service-card" data-index="0">
                     <div class="image-container">
                         <div class="service-image">
-                            <img src="IMG_5312.PNG" alt="Team Member: Arya Jibi Ghimire">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Team Member: Arya Jibi Ghimire">
                         </div>
                         <div class="name-badge">Arya Jibi Ghimire</div>
                         <div class="content">
@@ -1070,7 +1135,7 @@
                 <div class="service-card" data-index="1">
                     <div class="image-container">
                         <div class="service-image">
-                            <img src="IMG_5312.png" alt="Team Member: Saarthak Raj Pandey">
+                            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Team Member: Saarthak Raj Pandey">
                         </div>
                         <div class="name-badge">Saarthak Raj Pandey</div>
                         <div class="content">
@@ -1088,7 +1153,7 @@
                 <div class="service-card" data-index="2">
                     <div class="image-container">
                         <div class="service-image">
-                            <img src="IMG_5311.png" alt="Team Member: Subhav Baral">
+                            <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Team Member: Subhav Baral">
                         </div>
                         <div class="name-badge">Subhav Baral</div>
                         <div class="content">
@@ -1103,30 +1168,29 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="navigation">
             <button class="nav-arrow" id="prev-btn">◀</button>
             <button class="nav-arrow" id="next-btn">▶</button>
         </div>
-
-        
     </div>
 
-       <div class="container-1"> <div class="left-section">
+    <div class="container-1">
+        <div class="left-section">
             <h1 class="main-title">Frequently Asked Questions</h1>
             
             <div class="cta-group">
                 <p class="help-text">Can't find what you are looking for?</p>
             </div>
             
-           <div class="chat-button-container">
-    <button class="chat-button" aria-label="Open chat">
-        <svg class="chat-icon-svg" viewBox="0 0 24 24">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor"></path>
-            <circle cx="12" cy="10" r="1.5" stroke="none" fill="#fff"></circle>
-        </svg>
-    </button>
-</div>
+            <div class="chat-button-container">
+                <button class="chat-button" aria-label="Open chat">
+                    <svg class="chat-icon-svg" viewBox="0 0 24 24">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor"></path>
+                        <circle cx="12" cy="10" r="1.5" stroke="none" fill="#fff"></circle>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <div class="faq-section">
@@ -1209,15 +1273,14 @@
         </div>
     </div>
 
-     <div id="footer-placeholder"></div>
-    
-    <script>
-        // --- Navigation and Menu Scripts (Existing) ---
+    <div id="footer-placeholder"></div>
 
-        // Navbar scroll effect
+    <script>
+        // --- Navbar scroll effect (Adds 'scrolled' class after passing the announcement bar) ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (navbar) {
+                // The scroll class is added once the scroll position is past the announcement bar height (40px)
                 if (window.scrollY > 40) { 
                     navbar.classList.add('scrolled');
                 } else {
@@ -1227,7 +1290,7 @@
         });
 
 
-        // Mobile menu toggle
+        // --- Mobile menu toggle ---
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             if (navLinks) {
@@ -1235,18 +1298,19 @@
             }
         }
 
-        // Smooth scroll for navigation
+        // --- Smooth scroll for navigation (Optional: You can remove this if you don't need smooth scroll) ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
+                
                 if (target) {
-                    // Scroll to the target element, accounting for sticky bars
-                    window.scrollTo({
-                        top: target.offsetTop - navbar.offsetHeight - 40, 
-                        behavior: 'smooth'
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
+                
                 // Close mobile menu if open
                 const navLinks = document.getElementById('navLinks');
                 if (navLinks) {
@@ -1255,37 +1319,126 @@
             });
         });
 
-        // --- Carousel Script (Existing) ---
-        const carousel = document.querySelector('.services-grid');
+        // --- Image Data (Base64 for self-contained code) ---
+    // These are small base64 placeholders. 
+    const base64Image1 = 'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+    const base64Image2 = 'https://images.unsplash.com/photo-1607799131608-9a22dd60e25e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+     const base64Image3= 'https://images.unsplash.com/photo-1563172218-cc4b58795905?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+    // Use Base64 images directly
+    const images = [
+        base64Image1,
+        base64Image2,
+        base64Image3,
+    ];
+
+    const slider = document.getElementById('backgroundSlider');
+    let currentIndex = 0;
+
+    /**
+     * Creates and appends image elements to the slider.
+     */
+    function setupSlider() {
+        images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `Tech Background ${index + 1}`;
+            
+            // Set first image as active
+            if (index === 0) {
+                img.classList.add('active'); 
+            }
+            slider.appendChild(img);
+        });
+    }
+
+    /**
+     * Switches the active image in the slideshow.
+     */
+    function switchImage() {
+        const imageElements = slider.getElementsByTagName('img');
+        
+        if (imageElements.length === 0) return;
+
+        // Remove 'active' class from current image
+        imageElements[currentIndex].classList.remove('active');
+
+        // Calculate next index
+        currentIndex = (currentIndex + 1) % imageElements.length;
+
+        // Add 'active' class to the next image
+        imageElements[currentIndex].classList.add('active');
+    }
+
+    // Initialize the slider and start the rotation
+    setupSlider();
+    // Change image every 4 seconds (4000 milliseconds) for a faster, dynamic "movie frame" look
+    setInterval(switchImage, 4000); 
+
+     // Star and Nebula Generation
+        document.addEventListener('DOMContentLoaded', () => {
+            const starContainer = document.getElementById('star-container');
+            const numStars = 100;
+            const numNebulae = 8;
+
+            const nebulaColors = [
+                ['#F0F0F0', '#B0B0B0', '#707070'],
+                ['#C8E6FF', '#81D4FA', '#4FC3F7'],
+                ['#FFFFFF', '#E0E0E0', '#A0A0A0'],
+                ['#BBDEFB', '#64B5F6', '#2196F3'],
+            ];
+
+            function createStar() {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                const duration = Math.random() * 10 + 5;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `-${Math.random() * duration}s`;
+                starContainer.appendChild(star);
+            }
+
+            function createNebula() {
+                const nebula = document.createElement('div');
+                nebula.classList.add('nebula');
+                const colors = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
+                const size = Math.random() * 400 + 200;
+                nebula.style.width = `${size}px`;
+                nebula.style.height = `${size}px`;
+                nebula.style.left = `${Math.random() * 120 - 10}vw`;
+                nebula.style.top = `${Math.random() * 120 - 10}vh`;
+                nebula.style.background = `radial-gradient(circle at center, ${colors[0]} 0%, ${colors[1]} 30%, ${colors[2]} 60%, transparent 80%)`;
+                starContainer.appendChild(nebula);
+            }
+
+            function initUniverse() {
+                starContainer.innerHTML = '';
+                for (let i = 0; i < numNebulae; i++) {
+                    createNebula();
+                }
+                for (let i = 0; i < numStars; i++) {
+                    createStar();
+                }
+            }
+
+            initUniverse();
+            window.addEventListener('resize', initUniverse);
+        });
+
+        // 3D Carousel Functionality
+        const carousel = document.getElementById('carousel');
         const cards = document.querySelectorAll('.service-card');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
-        
+
         let currentRotation = 0;
         const totalCards = cards.length;
         const angle = 360 / totalCards; // 120 degrees for 3 cards
 
-        function rotateCarousel(targetIndex) {
-            const requiredRotation = targetIndex * angle;
-
-            const currentFrontIndex = Math.round((-currentRotation / angle) % totalCards);
-            let steps = targetIndex - currentFrontIndex;
-            
-            // Adjust for wrapping (shortest path)
-            if (steps > totalCards / 2) {
-                steps -= totalCards;
-            } else if (steps < -totalCards / 2) {
-                steps += totalCards;
-            }
-            
-            currentRotation += steps * angle;
-
-            carousel.style.transform = `rotateY(${currentRotation}deg)`;
-        }
-
-        // Initialize Carousel state
         if (cards.length > 0) {
-            // Add listeners for navigation
             nextBtn.addEventListener('click', () => {
                 currentRotation -= angle;
                 carousel.style.transform = `rotateY(${currentRotation}deg)`;
@@ -1297,98 +1450,14 @@
             });
         }
 
-        // --- STAR AND NEBULA GENERATION SCRIPT (New/Fixed) ---
-
         document.addEventListener('DOMContentLoaded', () => {
-            const starContainer = document.getElementById('star-container');
-            const numStars = 100;
-            const numNebulae = 8;
-            
-            // Define a palette of nebula colors
-       const nebulaColors = [
-                // 1. Pure Silver/Grey Nebula (Monochromatic)
-                ['#F0F0F0', '#B0B0B0', '#707070'], 
-                
-                // 2. Icy Blue Nebula (Subtle Blue focus)
-                ['#C8E6FF', '#81D4FA', '#4FC3F7'], 
-                
-                // 3. Cool White/Grey Nebula (High Contrast)
-                ['#FFFFFF', '#E0E0E0', '#A0A0A0'], 
-                
-                // 4. Dark Silver/Light Blue (Deeper Blue accent)
-                ['#BBDEFB', '#64B5F6', '#2196F3'], 
-            ];
-
-            // Function to create and position a single star
-            function createStar() {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                const size = Math.random() * 2 + 1; // 1px to 3px
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}vw`;
-                star.style.top = `${Math.random() * 100}vh`;
-                const duration = Math.random() * 10 + 5; // 5s to 15s twinkle
-                star.style.animationDuration = `${duration}s`;
-                star.style.animationDelay = `-${Math.random() * duration}s`;
-                starContainer.appendChild(star);
-            }
-
-            // Function to create and position a single nebula
-            function createNebula() {
-                const nebula = document.createElement('div');
-                nebula.classList.add('nebula');
-
-                // Pick a random color palette
-                const colors = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
-
-                // Set random size (large, between 200px and 600px)
-                const size = Math.random() * 400 + 200; 
-                nebula.style.width = `${size}px`;
-                nebula.style.height = `${size}px`;
-
-                // Set random position (allow slight overlap off-screen)
-                nebula.style.left = `${Math.random() * 120 - 10}vw`; 
-                nebula.style.top = `${Math.random() * 120 - 10}vh`;
-
-                // Create the soft radial gradient
-                nebula.style.background = `radial-gradient(circle at center, ${colors[0]} 0%, ${colors[1]} 30%, ${colors[2]} 60%, transparent 80%)`;
-
-                starContainer.appendChild(nebula);
-            }
-
-            // Initialization function
-            function initUniverse() {
-                starContainer.innerHTML = ''; // Clear existing elements
-
-                // 1. Create Nebulae
-                for (let i = 0; i < numNebulae; i++) {
-                    createNebula();
-                }
-
-                // 2. Create Stars
-                for (let i = 0; i < numStars; i++) {
-                    createStar();
-                }
-            }
-
-            // Initial creation
-            initUniverse();
-
-            // Re-initialize if the window is resized
-            window.addEventListener('resize', initUniverse);
-        });
-
-           document.addEventListener('DOMContentLoaded', () => {
             const faqItems = document.querySelectorAll('.faq-item');
             const faqQuestions = document.querySelectorAll('.faq-question');
             const searchInput = document.getElementById('searchInput');
             const searchCountSpan = document.getElementById('search-results-count');
-            const chatButton = document.querySelector('.chat-button'); // Restored chat button selection
+            const chatButton = document.querySelector('.chat-button');
 
-            /**
-             * Accordion Functionality
-             */
+            // Accordion Functionality
             faqQuestions.forEach((question) => {
                 question.addEventListener('click', () => {
                     const currentItem = question.closest('.faq-item');
@@ -1408,9 +1477,7 @@
                 });
             });
 
-            /**
-             * Search Functionality
-             */
+            // Search Functionality
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase().trim();
                 let matchCount = 0;
@@ -1450,15 +1517,13 @@
                 }
             });
 
-            /**
-             * Chat Button Functionality (Restored)
-             */
+            // Chat Button Functionality
             chatButton.addEventListener('click', () => {
                 alert('Initiating chat with Dark White Technologies Support...');
             });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
+         document.addEventListener('DOMContentLoaded', () => {
     // 1. Get the placeholder element by its ID
     const footerPlaceholder = document.getElementById('footer-placeholder');
     
